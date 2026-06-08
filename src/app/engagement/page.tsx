@@ -23,7 +23,10 @@ export default function EngagementPage() {
   const theme = getTheme("engagement");
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme.bg, color: theme.text }}>
+    <div
+      className="texture-warm min-h-screen"
+      style={{ backgroundColor: theme.bg, color: theme.text }}
+    >
       <Navbar variant="engagement" />
 
       <HeroSection
@@ -33,6 +36,7 @@ export default function EngagementPage() {
         ctas={engagementCTAs}
         variant="engagement"
         compact
+        showDates
       />
 
       <CountdownSection

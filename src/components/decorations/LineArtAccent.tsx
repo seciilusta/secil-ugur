@@ -1,37 +1,34 @@
 type LineArtAccentProps = {
+  color?: string;
+  accentColor?: string;
   className?: string;
 };
 
-export function LineArtAccent({ className = "" }: LineArtAccentProps) {
+export function LineArtAccent({
+  color = "#1A1008",
+  accentColor = "#5C4A36",
+  className = "",
+}: LineArtAccentProps) {
   return (
     <svg
-      viewBox="0 0 200 120"
+      viewBox="0 0 200 140"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={`pointer-events-none opacity-30 ${className}`}
+      className={`pointer-events-none opacity-35 ${className}`}
       aria-hidden
     >
+      <rect x="30" y="20" width="140" height="100" stroke={color} strokeWidth="0.6" />
+      <rect x="38" y="28" width="124" height="84" stroke={accentColor} strokeWidth="0.4" opacity="0.6" />
+      <path d="M30 20 L100 70 L170 20" stroke={color} strokeWidth="0.5" opacity="0.4" />
+      <path d="M30 120 L100 70 L170 120" stroke={color} strokeWidth="0.5" opacity="0.4" />
+      <path d="M100 20 V120" stroke={accentColor} strokeWidth="0.4" opacity="0.5" />
       <path
-        d="M100 10C120 10 130 30 130 50C130 70 120 90 100 90C80 90 70 70 70 50C70 30 80 10 100 10Z"
-        stroke="#2C1810"
-        strokeWidth="0.75"
-      />
-      <path
-        d="M100 25V75M75 50H125"
-        stroke="#8B7355"
+        d="M50 90 C70 75, 90 75, 100 80 C110 75, 130 75, 150 90"
+        stroke={color}
         strokeWidth="0.5"
       />
-      <path
-        d="M40 60C50 45 60 40 70 50C80 60 90 55 100 60C110 65 120 60 130 50C140 40 150 45 160 60"
-        stroke="#2C1810"
-        strokeWidth="0.6"
-      />
-      <path
-        d="M20 100C60 85 140 85 180 100"
-        stroke="#8B7355"
-        strokeWidth="0.4"
-      />
-      <circle cx="100" cy="50" r="4" stroke="#8B7355" strokeWidth="0.5" />
+      <circle cx="100" cy="70" r="5" stroke={accentColor} strokeWidth="0.5" />
+      <path d="M10 130 H190" stroke={accentColor} strokeWidth="0.35" opacity="0.4" />
     </svg>
   );
 }

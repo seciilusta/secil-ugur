@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { DecorativeDivider } from "@/components/decorations/DecorativeDivider";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
 import type { Event, ThemeVariant } from "@/types";
@@ -7,46 +8,67 @@ type EventCardProps = {
   event: Event;
   variant?: ThemeVariant;
   showLink?: boolean;
+  step?: string;
 };
 
 export function EventCard({
   event,
   variant = "landing",
   showLink = true,
+  step,
 }: EventCardProps) {
   const theme = getTheme(variant);
+  const eventVariant = event.slug === "engagement" ? "engagement" : "wedding";
+  const cardTheme = variant === "landing" ? getTheme(eventVariant) : theme;
+  const dividerVariant = event.slug === "engagement" ? "floral" : "ornate";
 
   const content = (
     <>
+      {step && (
+        <span
+          className={`${sans.className} mb-4 text-[10px] uppercase tracking-[0.35em]`}
+          style={{ color: cardTheme.accentLight }}
+        >
+          {step}
+        </span>
+      )}
       <p
-        className={`${sans.className} mb-4 text-[11px] uppercase tracking-[0.3em]`}
-        style={{ color: theme.accent }}
+        className={`${sans.className} mb-3 text-[10px] uppercase tracking-[0.35em]`}
+        style={{ color: cardTheme.accent }}
       >
         {event.label}
       </p>
       <h3
-        className={`${serif.className} mb-3 text-2xl font-light sm:text-3xl`}
-        style={{ color: theme.text }}
+        className={`${serif.className} mb-4 text-3xl font-normal tracking-wide sm:text-4xl`}
+        style={{ color: cardTheme.text }}
       >
         {event.title}
       </h3>
-      <div
-        className="mb-6 h-px w-10"
-        style={{ backgroundColor: theme.accent }}
+      <DecorativeDivider
+        color={cardTheme.text}
+        accentColor={cardTheme.accent}
+        variant={dividerVariant}
+        className="mb-5"
       />
       <p
-        className={`${serif.className} mb-1 text-lg font-light italic`}
-        style={{ color: theme.text }}
+        className={`${serif.className} mb-1 text-xl tracking-[0.12em]`}
+        style={{ color: cardTheme.accent }}
+      >
+        {event.shortDate}
+      </p>
+      <p
+        className={`${serif.className} mb-4 text-base font-normal italic opacity-80`}
+        style={{ color: cardTheme.text }}
       >
         {event.weekday}, {event.dateDisplay}
       </p>
-      <p className={`${sans.className} mb-4 text-sm font-light opacity-70`}>
+      <p className={`${sans.className} mb-6 text-sm font-light leading-relaxed opacity-70`}>
         {event.description}
       </p>
       {showLink && (
         <span
-          className={`${sans.className} text-[11px] uppercase tracking-[0.25em] transition-opacity group-hover:opacity-70`}
-          style={{ color: theme.accent }}
+          className={`${sans.className} text-[10px] uppercase tracking-[0.3em] transition-opacity group-hover:opacity-70`}
+          style={{ color: cardTheme.accent }}
         >
           {event.ctaLabel} →
         </span>
@@ -55,9 +77,13 @@ export function EventCard({
   );
 
   const className =
-    "group flex flex-col items-center px-6 py-10 text-center transition-opacity hover:opacity-90 sm:px-10 sm:py-14";
+    "group relative flex flex-col items-center px-6 py-12 text-center transition-all hover:opacity-95 sm:px-10 sm:py-14";
 
-  const style = { border: `1px solid ${theme.cardBorder}` };
+  const style = {
+    border: `1px solid ${cardTheme.cardBorder}`,
+    backgroundColor: cardTheme.cardBg,
+    boxShadow: `inset 0 0 0 1px ${cardTheme.border}`,
+  };
 
   if (showLink) {
     return (

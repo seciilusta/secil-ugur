@@ -23,7 +23,10 @@ export default function WeddingPage() {
   const theme = getTheme("wedding");
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme.bg, color: theme.text }}>
+    <div
+      className="texture-editorial min-h-screen"
+      style={{ backgroundColor: theme.bg, color: theme.text }}
+    >
       <Navbar variant="wedding" />
 
       <HeroSection
@@ -33,6 +36,7 @@ export default function WeddingPage() {
         ctas={weddingCTAs}
         variant="wedding"
         compact
+        showDates
       />
 
       <CountdownSection

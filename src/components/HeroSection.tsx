@@ -1,7 +1,12 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { CelebrationTimeline } from "@/components/CelebrationTimeline";
+import { ArchLineArt } from "@/components/decorations/ArchLineArt";
+import { DecorativeDivider } from "@/components/decorations/DecorativeDivider";
 import { FloralAccent } from "@/components/decorations/FloralAccent";
 import { LineArtAccent } from "@/components/decorations/LineArtAccent";
+import { Monogram } from "@/components/decorations/Monogram";
+import { engagementEvent, weddingEvent } from "@/data/mock";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
 import type { CTA, ThemeVariant } from "@/types";
@@ -13,6 +18,8 @@ type HeroSectionProps = {
   ctas?: CTA[];
   variant?: ThemeVariant;
   compact?: boolean;
+  showDates?: boolean;
+  showTimeline?: boolean;
 };
 
 export function HeroSection({
@@ -22,80 +29,181 @@ export function HeroSection({
   ctas = [],
   variant = "landing",
   compact = false,
+  showDates = false,
+  showTimeline = false,
 }: HeroSectionProps) {
   const theme = getTheme(variant);
+  const isEngagement = variant === "engagement";
+  const isWedding = variant === "wedding";
+  const isLanding = variant === "landing";
+
+  const dividerVariant = isEngagement ? "floral" : "ornate";
+  const textureClass = isEngagement
+    ? "texture-warm"
+    : isWedding
+      ? "texture-editorial"
+      : "texture-paper";
 
   return (
     <section
-      className={`relative flex flex-col items-center justify-center px-6 text-center ${
-        compact ? "py-20 sm:py-28" : "min-h-[85vh] py-20 sm:min-h-[90vh]"
+      className={`relative overflow-hidden px-6 text-center ${
+        compact ? "py-20 sm:py-28" : "min-h-[88vh] py-16 sm:min-h-[92vh] sm:py-20"
       }`}
     >
-      <div
-        className="absolute inset-x-0 top-0 h-px"
-        style={{ backgroundColor: theme.border }}
-      />
+      <div className={`absolute inset-0 ${textureClass}`} aria-hidden />
 
-      {variant === "engagement" && (
-        <FloralAccent className="absolute left-4 top-16 h-16 w-24 sm:left-12 sm:h-20 sm:w-32" />
+      {isEngagement && (
+        <>
+          <FloralAccent
+            color={theme.decorative}
+            accentColor={theme.accentLight}
+            className="absolute -left-4 top-24 h-24 w-32 sm:left-8 sm:h-32 sm:w-40"
+          />
+          <FloralAccent
+            color={theme.decorative}
+            accentColor={theme.accentLight}
+            className="absolute -right-4 bottom-24 h-24 w-32 rotate-180 sm:right-8 sm:h-32 sm:w-40"
+          />
+        </>
       )}
-      {variant === "engagement" && (
-        <FloralAccent className="absolute bottom-16 right-4 h-16 w-24 rotate-180 sm:right-12 sm:h-20 sm:w-32" />
+
+      {isWedding && (
+        <>
+          <LineArtAccent
+            color={theme.text}
+            accentColor={theme.accent}
+            className="absolute -right-8 top-16 h-28 w-36 sm:right-4 sm:h-36 sm:w-48"
+          />
+          <LineArtAccent
+            color={theme.text}
+            accentColor={theme.accent}
+            className="absolute -left-8 bottom-16 h-28 w-36 -scale-x-100 sm:left-4 sm:h-36 sm:w-48"
+          />
+        </>
       )}
-      {variant === "wedding" && (
-        <LineArtAccent className="absolute right-6 top-20 h-20 w-32 sm:right-16 sm:h-28 sm:w-44" />
-      )}
-      {variant === "wedding" && (
-        <LineArtAccent className="absolute bottom-20 left-6 h-20 w-32 -scale-x-100 sm:left-16 sm:h-28 sm:w-44" />
-      )}
 
-      <p
-        className={`${sans.className} mb-8 text-[11px] uppercase tracking-[0.4em]`}
-        style={{ color: theme.accent }}
-      >
-        {eyebrow}
-      </p>
+      <div className="relative mx-auto flex max-w-3xl flex-col items-center justify-center">
+        {isLanding && (
+          <ArchLineArt
+            color={theme.text}
+            accentColor={theme.accent}
+            className="mb-6 sm:mb-8"
+          />
+        )}
 
-      <h1
-        className={`${serif.className} mb-4 max-w-4xl text-4xl font-light leading-tight tracking-wide sm:text-6xl md:text-7xl`}
-        style={{ color: theme.text }}
-      >
-        {title}
-      </h1>
+        <Monogram
+          color={theme.text}
+          accentColor={theme.accent}
+          size={compact ? "md" : "xl"}
+          className="mb-6 sm:mb-8"
+        />
 
-      <div
-        className="my-6 h-px w-16"
-        style={{ backgroundColor: theme.accent }}
-      />
+        <p
+          className={`${sans.className} mb-6 text-[10px] uppercase tracking-[0.45em]`}
+          style={{ color: theme.accent }}
+        >
+          {eyebrow}
+        </p>
 
-      <p
-        className={`${serif.className} mb-12 max-w-xl text-xl font-light italic tracking-wide sm:text-2xl`}
-        style={{ color: theme.text }}
-      >
-        {subtitle}
-      </p>
+        <div
+          className="invitation-border relative w-full px-6 py-10 sm:px-12 sm:py-14"
+          style={{
+            backgroundColor: theme.cardBg,
+            boxShadow: `inset 0 0 0 1px ${theme.accent}40, inset 0 0 0 5px transparent, inset 0 0 0 6px ${theme.accent}20`,
+          }}
+        >
+          {isEngagement && (
+            <FloralAccent
+              color={theme.decorative}
+              accentColor={theme.accentLight}
+              className="absolute -top-4 left-1/2 h-8 w-16 -translate-x-1/2"
+            />
+          )}
 
-      {ctas.length > 0 && (
-        <div className="flex w-full max-w-xs flex-col gap-3 sm:max-w-none sm:flex-row sm:gap-5">
-          {ctas.map((cta) => (
-            <Link
-              key={cta.label}
-              href={cta.href}
-              className={`${sans.className} inline-flex h-12 items-center justify-center px-8 text-[11px] uppercase tracking-[0.25em] transition-opacity hover:opacity-80`}
-              style={
-                cta.style === "primary"
-                  ? { backgroundColor: theme.text, color: theme.bg }
-                  : {
-                      border: `1px solid ${theme.text}`,
-                      color: theme.text,
-                    }
-              }
+          <h1
+            className={`${serif.className} mb-5 text-4xl font-normal leading-[1.1] tracking-wide sm:text-6xl md:text-7xl`}
+            style={{ color: theme.text }}
+          >
+            {title}
+          </h1>
+
+          <DecorativeDivider
+            color={theme.text}
+            accentColor={theme.accent}
+            variant={dividerVariant}
+            className="mb-6"
+          />
+
+          <p
+            className={`${serif.className} mx-auto max-w-lg text-lg font-normal italic leading-relaxed sm:text-xl`}
+            style={{ color: theme.text, opacity: 0.9 }}
+          >
+            {subtitle}
+          </p>
+
+          {(showDates || isLanding) && !compact && (
+            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-10">
+              {[
+                { label: "Nişan", date: engagementEvent.shortDate },
+                { label: "Düğün", date: weddingEvent.shortDate },
+              ].map((item) => (
+                <div key={item.label} className="text-center">
+                  <p
+                    className={`${sans.className} mb-1.5 text-[9px] uppercase tracking-[0.35em]`}
+                    style={{ color: theme.accent }}
+                  >
+                    {item.label}
+                  </p>
+                  <p
+                    className={`${serif.className} text-xl tracking-[0.15em] sm:text-2xl`}
+                    style={{ color: theme.text }}
+                  >
+                    {item.date}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {compact && showDates && (
+            <p
+              className={`${serif.className} mt-6 text-xl tracking-[0.15em] sm:text-2xl`}
+              style={{ color: theme.accent }}
             >
-              {cta.label}
-            </Link>
-          ))}
+              {isEngagement ? engagementEvent.shortDate : weddingEvent.shortDate}
+            </p>
+          )}
         </div>
-      )}
+
+        {(showTimeline || isLanding) && (
+          <div className="mt-10 w-full">
+            <CelebrationTimeline variant={variant} compact={compact} />
+          </div>
+        )}
+
+        {ctas.length > 0 && (
+          <div className="mt-10 flex w-full max-w-xs flex-col gap-3 sm:max-w-none sm:flex-row sm:gap-5">
+            {ctas.map((cta) => (
+              <Link
+                key={cta.label}
+                href={cta.href}
+                className={`${sans.className} inline-flex h-12 items-center justify-center px-10 text-[10px] uppercase tracking-[0.3em] transition-all hover:opacity-85`}
+                style={
+                  cta.style === "primary"
+                    ? { backgroundColor: theme.text, color: theme.bg }
+                    : {
+                        border: `1px solid ${theme.text}`,
+                        color: theme.text,
+                        backgroundColor: "transparent",
+                      }
+                }
+              >
+                {cta.label}
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
 
       <div
         className="absolute inset-x-0 bottom-0 h-px"

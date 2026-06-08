@@ -1,14 +1,15 @@
-import { Cormorant_Garamond, Lato } from "next/font/google";
+import { Bodoni_Moda, Jost } from "next/font/google";
 
-export const serif = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+export const serif = Bodoni_Moda({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
   variable: "--font-serif",
 });
 
-export const sans = Lato({
-  subsets: ["latin"],
-  weight: ["300", "400"],
+export const sans = Jost({
+  subsets: ["latin", "latin-ext"],
+  weight: ["300", "400", "500"],
   variable: "--font-sans",
 });
 

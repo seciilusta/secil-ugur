@@ -1,48 +1,53 @@
-import type { ThemeVariant } from "@/types";
-
 type FloralAccentProps = {
-  variant?: ThemeVariant;
+  color?: string;
+  accentColor?: string;
   className?: string;
 };
 
-export function FloralAccent({ className = "" }: FloralAccentProps) {
+export function FloralAccent({
+  color = "#B8897A",
+  accentColor = "#D4A5A5",
+  className = "",
+}: FloralAccentProps) {
   return (
     <svg
-      viewBox="0 0 120 80"
+      viewBox="0 0 140 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={`pointer-events-none opacity-40 ${className}`}
+      className={`pointer-events-none opacity-50 ${className}`}
       aria-hidden
     >
       <path
-        d="M60 40C60 28 52 18 40 18C28 18 20 28 20 40C20 52 28 62 40 62C52 62 60 52 60 40Z"
-        stroke="#B8897A"
-        strokeWidth="0.75"
+        d="M70 50 C70 35 58 22 42 22 C26 22 14 35 14 50 C14 65 26 78 42 78 C58 78 70 65 70 50Z"
+        stroke={color}
+        strokeWidth="0.6"
       />
       <path
-        d="M100 40C100 28 92 18 80 18C68 18 60 28 60 40C60 52 68 62 80 62C92 62 100 52 100 40Z"
-        stroke="#B8897A"
-        strokeWidth="0.75"
+        d="M126 50 C126 35 114 22 98 22 C82 22 70 35 70 50 C70 65 82 78 98 78 C114 78 126 65 126 50Z"
+        stroke={color}
+        strokeWidth="0.6"
       />
       <path
-        d="M40 40C40 32 34 26 26 26C18 26 12 32 12 40"
-        stroke="#D4A5A5"
-        strokeWidth="0.5"
+        d="M42 50 C42 42 36 36 28 36 C20 36 14 42 14 50"
+        stroke={accentColor}
+        strokeWidth="0.45"
       />
       <path
-        d="M80 40C80 32 86 26 94 26C102 26 108 32 108 40"
-        stroke="#D4A5A5"
-        strokeWidth="0.5"
+        d="M98 50 C98 42 104 36 112 36 C120 36 126 42 126 50"
+        stroke={accentColor}
+        strokeWidth="0.45"
       />
+      <path d="M70 8 V92" stroke={color} strokeWidth="0.35" opacity="0.4" />
+      <path d="M35 28 L105 72 M105 28 L35 72" stroke={accentColor} strokeWidth="0.3" opacity="0.35" />
+      <circle cx="70" cy="50" r="4" stroke={color} strokeWidth="0.5" />
+      <circle cx="42" cy="50" r="2.5" stroke={accentColor} strokeWidth="0.4" />
+      <circle cx="98" cy="50" r="2.5" stroke={accentColor} strokeWidth="0.4" />
       <path
-        d="M60 10V70M30 25L90 55M90 25L30 55"
-        stroke="#C9A89A"
-        strokeWidth="0.4"
-        opacity="0.6"
+        d="M70 14 C65 18, 62 22, 60 28 M70 14 C75 18, 78 22, 80 28"
+        stroke={accentColor}
+        strokeWidth="0.35"
+        opacity="0.5"
       />
-      <circle cx="60" cy="40" r="3" stroke="#B8897A" strokeWidth="0.5" />
-      <circle cx="40" cy="40" r="2" stroke="#D4A5A5" strokeWidth="0.5" />
-      <circle cx="80" cy="40" r="2" stroke="#D4A5A5" strokeWidth="0.5" />
     </svg>
   );
 }

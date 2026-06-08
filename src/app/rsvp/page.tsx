@@ -23,7 +23,10 @@ export default function RsvpPage() {
   const labelClass = `${sans.className} mb-2 block text-[11px] uppercase tracking-[0.2em]`;
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme.bg, color: theme.text }}>
+    <div
+      className="texture-editorial min-h-screen"
+      style={{ backgroundColor: theme.bg, color: theme.text }}
+    >
       <Navbar variant="wedding" />
 
       <section className="px-6 py-16 sm:py-24">
@@ -40,7 +43,14 @@ export default function RsvpPage() {
           Sizi aramızda görmek isteriz
         </p>
 
-        <form className="mx-auto max-w-lg space-y-8">
+        <form
+          className="mx-auto max-w-lg space-y-8 px-8 py-10 sm:px-10 sm:py-12"
+          style={{
+            backgroundColor: theme.cardBg,
+            border: `1px solid ${theme.cardBorder}`,
+            boxShadow: `inset 0 0 0 1px ${theme.border}`,
+          }}
+        >
           <div>
             <label htmlFor="name" className={labelClass} style={{ color: theme.accent }}>
               Ad Soyad

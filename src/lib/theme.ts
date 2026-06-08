@@ -2,31 +2,45 @@ import type { ThemeVariant } from "@/types";
 
 export const themes = {
   landing: {
-    bg: "#FAF7F2",
-    text: "#2C1810",
-    accent: "#8B7355",
-    muted: "#8B735599",
-    border: "#8B735540",
-    cardBorder: "#8B735550",
+    bg: "#F7F3EC",
+    bgAccent: "#EDE6DA",
+    text: "#1A1008",
+    accent: "#6E5840",
+    accentLight: "#9A8268",
+    muted: "#6E584080",
+    border: "#6E584033",
+    cardBorder: "#6E58404D",
+    cardBg: "#FDFBF7",
+    decorative: "#6E5840",
   },
   wedding: {
-    bg: "#FAF7F2",
-    text: "#2C1810",
-    accent: "#8B7355",
-    muted: "#8B735599",
-    border: "#8B735540",
-    cardBorder: "#8B735550",
+    bg: "#F5F1E8",
+    bgAccent: "#E8E2D6",
+    text: "#1A1008",
+    accent: "#5C4A36",
+    accentLight: "#8A7358",
+    muted: "#5C4A3680",
+    border: "#5C4A3633",
+    cardBorder: "#5C4A364D",
+    cardBg: "#FBF9F4",
+    decorative: "#1A1008",
   },
   engagement: {
-    bg: "#FBF5F0",
-    text: "#4A3228",
-    accent: "#B8897A",
-    muted: "#B8897A99",
-    border: "#D4A5A540",
-    cardBorder: "#D4A5A550",
+    bg: "#FAF0E8",
+    bgAccent: "#F2E0D4",
+    text: "#3D2A22",
+    accent: "#A67B6D",
+    accentLight: "#C9A08F",
+    muted: "#A67B6D80",
+    border: "#C9A08F44",
+    cardBorder: "#C9A08F55",
+    cardBg: "#FDF6F1",
+    decorative: "#B8897A",
   },
 } as const;
 
-export function getTheme(variant: ThemeVariant) {
+export type Theme = (typeof themes)[keyof typeof themes];
+
+export function getTheme(variant: ThemeVariant): Theme {
   return themes[variant === "landing" ? "landing" : variant];
 }

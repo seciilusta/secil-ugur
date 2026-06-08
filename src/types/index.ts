@@ -17,6 +17,7 @@ export type Event = {
   title: string;
   date: string;
   dateDisplay: string;
+  shortDate: string;
   weekday: string;
   time: string;
   venue: string;

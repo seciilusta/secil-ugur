@@ -1,3 +1,4 @@
+import { DecorativeDivider } from "@/components/decorations/DecorativeDivider";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
 import type { ThemeVariant } from "@/types";
@@ -16,21 +17,27 @@ export function SectionHeading({
   className = "",
 }: SectionHeadingProps) {
   const theme = getTheme(variant);
+  const dividerVariant = variant === "engagement" ? "floral" : "ornate";
 
   return (
     <div className={`text-center ${className}`}>
       <p
-        className={`${sans.className} mb-3 text-[11px] uppercase tracking-[0.3em]`}
+        className={`${sans.className} mb-4 text-[10px] uppercase tracking-[0.35em]`}
         style={{ color: theme.accent }}
       >
         {eyebrow}
       </p>
       <h2
-        className={`${serif.className} text-3xl font-light tracking-wide sm:text-4xl`}
+        className={`${serif.className} mb-6 text-3xl font-normal tracking-wide sm:text-4xl md:text-5xl`}
         style={{ color: theme.text }}
       >
         {title}
       </h2>
+      <DecorativeDivider
+        color={theme.text}
+        accentColor={theme.accent}
+        variant={dividerVariant}
+      />
     </div>
   );
 }

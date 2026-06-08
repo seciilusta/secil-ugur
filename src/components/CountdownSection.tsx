@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { SectionHeading } from "@/components/SectionHeading";
+import { SectionSeparator } from "@/components/decorations/SectionSeparator";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
 import type { CountdownTarget, ThemeVariant } from "@/types";
@@ -44,15 +45,15 @@ function CountdownUnit({
   const theme = getTheme(variant);
 
   return (
-    <div className="flex flex-col items-center gap-1">
+    <div className="flex flex-col items-center gap-2 px-2 py-3">
       <span
-        className={`${serif.className} text-3xl font-light tracking-wider sm:text-4xl`}
+        className={`${serif.className} text-3xl font-normal tracking-wider sm:text-4xl`}
         style={{ color: theme.text }}
       >
         {String(value).padStart(2, "0")}
       </span>
       <span
-        className={`${sans.className} text-[10px] uppercase tracking-[0.25em]`}
+        className={`${sans.className} text-[9px] uppercase tracking-[0.3em]`}
         style={{ color: theme.accent }}
       >
         {label}
@@ -65,10 +66,12 @@ function CountdownBlock({
   label,
   date,
   variant,
+  shortDate,
 }: {
   label: string;
   date: Date;
   variant: ThemeVariant;
+  shortDate?: string;
 }) {
   const theme = getTheme(variant);
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
@@ -90,16 +93,27 @@ function CountdownBlock({
   });
 
   return (
-    <div className="flex flex-1 flex-col items-center gap-6 px-4 py-8 sm:px-8">
+    <div
+      className="flex flex-1 flex-col items-center gap-6 px-4 py-10 sm:px-8"
+      style={{ backgroundColor: theme.cardBg }}
+    >
       <div className="text-center">
         <p
-          className={`${sans.className} mb-2 text-[11px] uppercase tracking-[0.3em]`}
+          className={`${sans.className} mb-2 text-[10px] uppercase tracking-[0.35em]`}
           style={{ color: theme.accent }}
         >
           {label}
         </p>
+        {shortDate && (
+          <p
+            className={`${serif.className} mb-2 text-2xl tracking-[0.12em]`}
+            style={{ color: theme.text }}
+          >
+            {shortDate}
+          </p>
+        )}
         <p
-          className={`${serif.className} text-lg font-light italic sm:text-xl`}
+          className={`${serif.className} text-base font-normal italic opacity-80 sm:text-lg`}
           style={{ color: theme.text }}
         >
           {formatted}
@@ -107,15 +121,29 @@ function CountdownBlock({
       </div>
 
       {mounted && timeLeft ? (
-        <div className="grid grid-cols-4 gap-4 sm:gap-8">
-          <CountdownUnit value={timeLeft.days} label="Gün" variant={variant} />
-          <CountdownUnit value={timeLeft.hours} label="Saat" variant={variant} />
-          <CountdownUnit value={timeLeft.minutes} label="Dk" variant={variant} />
-          <CountdownUnit value={timeLeft.seconds} label="Sn" variant={variant} />
+        <div
+          className="grid grid-cols-4 overflow-hidden"
+          style={{ border: `1px solid ${theme.cardBorder}` }}
+        >
+          {(
+            [
+              { value: timeLeft.days, label: "Gün" },
+              { value: timeLeft.hours, label: "Saat" },
+              { value: timeLeft.minutes, label: "Dk" },
+              { value: timeLeft.seconds, label: "Sn" },
+            ] as const
+          ).map((unit, i) => (
+            <div
+              key={unit.label}
+              style={i > 0 ? { borderLeft: `1px solid ${theme.border}` } : undefined}
+            >
+              <CountdownUnit value={unit.value} label={unit.label} variant={variant} />
+            </div>
+          ))}
         </div>
       ) : mounted ? (
         <p
-          className={`${serif.className} text-xl font-light italic`}
+          className={`${serif.className} text-xl font-normal italic`}
           style={{ color: theme.accent }}
         >
           Gün geldi
@@ -136,13 +164,19 @@ export function CountdownSection({
 }: CountdownSectionProps) {
   const theme = getTheme(variant);
 
+  const shortDates: Record<string, string> = {
+    Nişan: "04.07.2026",
+    Düğün: "04.10.2026",
+  };
+
   return (
     <section id={id} className="px-6 py-16 sm:py-24">
+      <SectionSeparator variant={variant} />
       <SectionHeading
         eyebrow={eyebrow}
         title={title}
         variant={variant}
-        className="mb-12"
+        className="mb-12 mt-8"
       />
 
       <div
@@ -155,6 +189,7 @@ export function CountdownSection({
           borderColor: theme.cardBorder,
           borderWidth: 1,
           borderStyle: "solid",
+          boxShadow: `inset 0 0 0 1px ${theme.border}`,
         }}
       >
         {targets.map((target) => (
@@ -163,6 +198,7 @@ export function CountdownSection({
             label={target.label}
             date={new Date(target.date)}
             variant={variant}
+            shortDate={shortDates[target.label]}
           />
         ))}
       </div>

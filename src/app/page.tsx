@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/HeroSection";
 import { Navbar } from "@/components/Navbar";
 import { SectionHeading } from "@/components/SectionHeading";
+import { SectionSeparator } from "@/components/decorations/SectionSeparator";
 import { WelcomeMessage } from "@/components/WelcomeMessage";
 import {
   couple,
@@ -19,7 +20,10 @@ export default function HomePage() {
   const theme = getTheme("landing");
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme.bg, color: theme.text }}>
+    <div
+      className="texture-paper min-h-screen"
+      style={{ backgroundColor: theme.bg, color: theme.text }}
+    >
       <Navbar variant="landing" />
 
       <HeroSection
@@ -43,6 +47,8 @@ export default function HomePage() {
         variant="landing"
       />
 
+      <SectionSeparator variant="landing" />
+
       <section id="events" className="px-6 py-16 sm:py-24">
         <SectionHeading
           eyebrow="Kutlamalarımız"
@@ -50,15 +56,18 @@ export default function HomePage() {
           variant="landing"
           className="mb-4"
         />
-        <p
-          className="mx-auto mb-12 max-w-lg text-center text-sm font-light opacity-70"
-        >
+        <p className="mx-auto mb-12 max-w-lg text-center text-sm font-light leading-relaxed opacity-70">
           Mekân, saat ve yol tarifi gibi detayları tarihe yaklaştıkça buradan
           güncelleyeceğiz.
         </p>
-        <div className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2 sm:gap-8">
-          {events.map((event) => (
-            <EventCard key={event.slug} event={event} variant="landing" />
+        <div className="mx-auto grid max-w-4xl gap-8 sm:grid-cols-2">
+          {events.map((event, i) => (
+            <EventCard
+              key={event.slug}
+              event={event}
+              variant="landing"
+              step={i === 0 ? "I" : "II"}
+            />
           ))}
         </div>
       </section>
