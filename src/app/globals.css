@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+:root {
+  --ivory: #faf7f2;
+  --espresso: #2c1810;
+  --gold: #8b7355;
+  --blush: #fbf5f0;
+  --rose: #b8897a;
+}
+
+@theme inline {
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+}
+
+body {
+  background: var(--ivory);
+  color: var(--espresso);
+}
