@@ -8,6 +8,7 @@ type SectionHeadingProps = {
   title: string;
   variant?: ThemeVariant;
   className?: string;
+  align?: "center" | "left";
 };
 
 export function SectionHeading({
@@ -15,12 +16,14 @@ export function SectionHeading({
   title,
   variant = "landing",
   className = "",
+  align = "center",
 }: SectionHeadingProps) {
   const theme = getTheme(variant);
   const dividerVariant = variant === "engagement" ? "floral" : "ornate";
+  const alignClass = align === "left" ? "text-left" : "text-center";
 
   return (
-    <div className={`text-center ${className}`}>
+    <div className={`${alignClass} ${className}`}>
       <p
         className={`${sans.className} mb-4 text-[10px] uppercase tracking-[0.35em]`}
         style={{ color: theme.accent }}
@@ -37,6 +40,7 @@ export function SectionHeading({
         color={theme.text}
         accentColor={theme.accent}
         variant={dividerVariant}
+        className={align === "left" ? "!mx-0" : undefined}
       />
     </div>
   );

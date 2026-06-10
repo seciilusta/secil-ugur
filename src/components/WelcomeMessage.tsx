@@ -16,13 +16,12 @@ export function WelcomeMessage({
   const dividerVariant = variant === "engagement" ? "floral" : "ornate";
 
   return (
-    <section className="px-6 py-16 sm:py-24">
+    <section className="px-6 py-10 lg:py-12">
       <div
-        className="mx-auto max-w-2xl px-8 py-12 text-center sm:px-14 sm:py-16"
+        className="mx-auto max-w-2xl px-8 py-10 text-center sm:px-12 sm:py-12"
         style={{
           backgroundColor: theme.cardBg,
-          border: `1px solid ${theme.cardBorder}`,
-          boxShadow: `inset 0 0 0 1px ${theme.border}`,
+          boxShadow: `inset 0 0 0 1px ${theme.accent}44, inset 0 0 0 6px transparent, inset 0 0 0 7px ${theme.gold}28`,
         }}
       >
         <DecorativeDivider

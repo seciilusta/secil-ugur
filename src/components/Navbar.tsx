@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Monogram } from "@/components/decorations/Monogram";
-import { navLinks } from "@/data/mock";
+import { navLinks, site } from "@/data/content";
 import { sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
 import type { ThemeVariant } from "@/types";
@@ -37,7 +37,7 @@ export function Navbar({ variant = "landing" }: NavbarProps) {
             className={`${sans.className} hidden text-[10px] uppercase tracking-[0.25em] sm:block`}
             style={{ color: theme.accent }}
           >
-            Nişan · Düğün
+            {site.navTagline}
           </span>
         </Link>
 

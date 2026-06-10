@@ -8,14 +8,12 @@ type EventCardProps = {
   event: Event;
   variant?: ThemeVariant;
   showLink?: boolean;
-  step?: string;
 };
 
 export function EventCard({
   event,
   variant = "landing",
   showLink = true,
-  step,
 }: EventCardProps) {
   const theme = getTheme(variant);
   const eventVariant = event.slug === "engagement" ? "engagement" : "wedding";
@@ -24,14 +22,12 @@ export function EventCard({
 
   const content = (
     <>
-      {step && (
-        <span
-          className={`${sans.className} mb-4 text-[10px] uppercase tracking-[0.35em]`}
-          style={{ color: cardTheme.accentLight }}
-        >
-          {step}
-        </span>
-      )}
+      <span
+        className={`${sans.className} mb-4 text-[10px] uppercase tracking-[0.35em]`}
+        style={{ color: cardTheme.accentLight }}
+      >
+        {event.step}
+      </span>
       <p
         className={`${sans.className} mb-3 text-[10px] uppercase tracking-[0.35em]`}
         style={{ color: cardTheme.accent }}

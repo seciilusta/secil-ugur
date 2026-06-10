@@ -20,6 +20,7 @@ type CountdownSectionProps = {
   eyebrow?: string;
   title?: string;
   id?: string;
+  compact?: boolean;
 };
 
 function getTimeLeft(target: Date): TimeLeft | null {
@@ -161,22 +162,22 @@ export function CountdownSection({
   eyebrow = "Takviminize Not Edin",
   title = "Geri Sayım",
   id = "countdown",
+  compact = false,
 }: CountdownSectionProps) {
   const theme = getTheme(variant);
 
-  const shortDates: Record<string, string> = {
-    Nişan: "04.07.2026",
-    Düğün: "04.10.2026",
-  };
-
   return (
-    <section id={id} className="px-6 py-16 sm:py-24">
-      <SectionSeparator variant={variant} />
+    <section
+      id={id}
+      className={compact ? "px-6 py-12 lg:py-14" : "px-6 py-16 sm:py-24"}
+      style={compact ? { backgroundColor: theme.bg } : undefined}
+    >
+      {!compact && <SectionSeparator variant={variant} />}
       <SectionHeading
         eyebrow={eyebrow}
         title={title}
         variant={variant}
-        className="mb-12 mt-8"
+        className={compact ? "mb-8 mt-2" : "mb-12 mt-8"}
       />
 
       <div
@@ -198,7 +199,7 @@ export function CountdownSection({
             label={target.label}
             date={new Date(target.date)}
             variant={variant}
-            shortDate={shortDates[target.label]}
+            shortDate={target.shortDate}
           />
         ))}
       </div>

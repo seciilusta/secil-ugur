@@ -1,6 +1,6 @@
 import { Monogram } from "@/components/decorations/Monogram";
 import { DecorativeDivider } from "@/components/decorations/DecorativeDivider";
-import { couple, engagementEvent, weddingEvent } from "@/data/mock";
+import { couple, engagementEvent, weddingEvent } from "@/data/content";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
 import type { ThemeVariant } from "@/types";

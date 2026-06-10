@@ -1,6 +1,6 @@
 import { SectionHeading } from "@/components/SectionHeading";
 import { SectionSeparator } from "@/components/decorations/SectionSeparator";
-import { detailLabels } from "@/data/mock";
+import { detailLabels } from "@/data/content";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
 import type { Event, FaqItem, ThemeVariant } from "@/types";
@@ -25,7 +25,7 @@ export function EventDetails({ event, variant, faqs }: EventDetailsProps) {
   ];
 
   return (
-    <section className="px-6 py-16 sm:py-24">
+    <section className="px-6 py-10 lg:py-12">
       <SectionSeparator variant={variant} />
       <SectionHeading
         eyebrow="Bilgiler"

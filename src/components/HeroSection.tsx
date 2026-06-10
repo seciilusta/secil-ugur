@@ -6,7 +6,7 @@ import { DecorativeDivider } from "@/components/decorations/DecorativeDivider";
 import { FloralAccent } from "@/components/decorations/FloralAccent";
 import { LineArtAccent } from "@/components/decorations/LineArtAccent";
 import { Monogram } from "@/components/decorations/Monogram";
-import { engagementEvent, weddingEvent } from "@/data/mock";
+import { events } from "@/data/content";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
 import type { CTA, ThemeVariant } from "@/types";
@@ -141,24 +141,21 @@ export function HeroSection({
             {subtitle}
           </p>
 
-          {(showDates || isLanding) && !compact && (
+          {showDates && !compact && (
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-10">
-              {[
-                { label: "Nişan", date: engagementEvent.shortDate },
-                { label: "Düğün", date: weddingEvent.shortDate },
-              ].map((item) => (
-                <div key={item.label} className="text-center">
+              {events.map((event) => (
+                <div key={event.slug} className="text-center">
                   <p
                     className={`${sans.className} mb-1.5 text-[9px] uppercase tracking-[0.35em]`}
                     style={{ color: theme.accent }}
                   >
-                    {item.label}
+                    {event.label}
                   </p>
                   <p
                     className={`${serif.className} text-xl tracking-[0.15em] sm:text-2xl`}
                     style={{ color: theme.text }}
                   >
-                    {item.date}
+                    {event.shortDate}
                   </p>
                 </div>
               ))}
@@ -170,12 +167,14 @@ export function HeroSection({
               className={`${serif.className} mt-6 text-xl tracking-[0.15em] sm:text-2xl`}
               style={{ color: theme.accent }}
             >
-              {isEngagement ? engagementEvent.shortDate : weddingEvent.shortDate}
+              {events.find((e) =>
+                isEngagement ? e.slug === "engagement" : e.slug === "wedding",
+              )?.shortDate}
             </p>
           )}
         </div>
 
-        {(showTimeline || isLanding) && (
+        {showTimeline && (
           <div className="mt-10 w-full">
             <CelebrationTimeline variant={variant} compact={compact} />
           </div>

@@ -23,17 +23,27 @@ export type Event = {
   venue: string;
   location: string;
   description: string;
+  cardSummary: string;
   dressCode?: string;
   href: string;
   ctaLabel: string;
+  step: string;
+  featured?: boolean;
 };
 
 export type CountdownTarget = {
   label: string;
   date: string;
+  shortDate: string;
 };
 
 export type FaqItem = {
   question: string;
   answer: string;
+};
+
+export type SectionContent = {
+  eyebrow: string;
+  title: string;
+  description?: string;
 };

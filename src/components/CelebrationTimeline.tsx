@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { DecorativeDivider } from "@/components/decorations/DecorativeDivider";
-import { engagementEvent, weddingEvent } from "@/data/mock";
+import { events } from "@/data/content";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
 import type { ThemeVariant } from "@/types";
@@ -17,38 +17,23 @@ export function CelebrationTimeline({
   const theme = getTheme(variant);
   const dividerVariant = variant === "engagement" ? "floral" : "ornate";
 
-  const steps = [
-    {
-      label: "Nişan",
-      date: engagementEvent.shortDate,
-      href: "/engagement",
-      step: "I",
-    },
-    {
-      label: "Düğün",
-      date: weddingEvent.shortDate,
-      href: "/wedding",
-      step: "II",
-    },
-  ];
-
   if (compact) {
     return (
       <div className="flex items-center justify-center gap-3 sm:gap-6">
-        {steps.map((step, i) => (
-          <div key={step.label} className="flex items-center gap-3 sm:gap-6">
+        {events.map((event, i) => (
+          <div key={event.slug} className="flex items-center gap-3 sm:gap-6">
             <div className="text-center">
               <p
                 className={`${sans.className} mb-1 text-[9px] uppercase tracking-[0.3em]`}
                 style={{ color: theme.accent }}
               >
-                {step.label}
+                {event.label}
               </p>
               <p
                 className={`${serif.className} text-sm tracking-wider sm:text-base`}
                 style={{ color: theme.text }}
               >
-                {step.date}
+                {event.shortDate}
               </p>
             </div>
             {i === 0 && (
@@ -75,29 +60,29 @@ export function CelebrationTimeline({
       />
 
       <div className="flex flex-col items-center gap-0 sm:flex-row sm:items-stretch sm:justify-center sm:gap-0">
-        {steps.map((step, i) => (
-          <div key={step.label} className="flex flex-col items-center sm:flex-row">
+        {events.map((event, i) => (
+          <div key={event.slug} className="flex flex-col items-center sm:flex-row">
             <Link
-              href={step.href}
+              href={event.href}
               className="group flex flex-col items-center px-8 py-6 text-center transition-opacity hover:opacity-80 sm:px-12"
             >
               <span
                 className={`${sans.className} mb-3 text-[10px] uppercase tracking-[0.35em]`}
                 style={{ color: theme.accentLight }}
               >
-                {step.step}
+                {event.step}
               </span>
               <h3
                 className={`${serif.className} mb-2 text-3xl font-normal tracking-wide sm:text-4xl`}
                 style={{ color: theme.text }}
               >
-                {step.label}
+                {event.label}
               </h3>
               <p
                 className={`${serif.className} text-base tracking-[0.2em] sm:text-lg`}
                 style={{ color: theme.accent }}
               >
-                {step.date}
+                {event.shortDate}
               </p>
             </Link>
 

@@ -2,53 +2,67 @@ import type { Metadata } from "next";
 import { CountdownSection } from "@/components/CountdownSection";
 import { EventDetails } from "@/components/EventDetails";
 import { Footer } from "@/components/Footer";
-import { HeroSection } from "@/components/HeroSection";
 import { Navbar } from "@/components/Navbar";
+import { RsvpCtaSection } from "@/components/RsvpCtaSection";
+import { WeddingContactSection } from "@/components/WeddingContactSection";
+import { WeddingGallerySection } from "@/components/WeddingGallerySection";
+import { WeddingHero } from "@/components/WeddingHero";
+import { WeddingScheduleSection } from "@/components/WeddingScheduleSection";
+import { WeddingStorySection } from "@/components/WeddingStorySection";
 import { WelcomeMessage } from "@/components/WelcomeMessage";
 import {
-  couple,
-  weddingCTAs,
+  pageMeta,
   weddingEvent,
   weddingFaq,
   weddingWelcomeMessage,
-} from "@/data/mock";
+} from "@/data/content";
 import { getTheme } from "@/lib/theme";
 
 export const metadata: Metadata = {
-  title: "Düğün — Seçil & Uğur",
-  description: "Seçil ve Uğur'un düğün kutlamasına davetlisiniz.",
+  title: pageMeta.wedding.title,
+  description: pageMeta.wedding.description,
 };
 
 export default function WeddingPage() {
   const theme = getTheme("wedding");
+  const meta = pageMeta.wedding;
 
   return (
     <div
-      className="texture-editorial min-h-screen"
+      className="texture-wedding min-h-screen"
       style={{ backgroundColor: theme.bg, color: theme.text }}
     >
       <Navbar variant="wedding" />
 
-      <HeroSection
-        eyebrow="Düğün"
-        title={couple.name}
-        subtitle="Zamansız ve zarif bir günde, birlikte"
-        ctas={weddingCTAs}
-        variant="wedding"
-        compact
-        showDates
-      />
+      <WeddingHero />
+
+      <WelcomeMessage message={weddingWelcomeMessage} variant="wedding" />
+
+      <WeddingStorySection />
 
       <CountdownSection
-        targets={[{ label: "Düğün", date: weddingEvent.date }]}
+        targets={[
+          {
+            label: weddingEvent.label,
+            date: weddingEvent.date,
+            shortDate: weddingEvent.shortDate,
+          },
+        ]}
         variant="wedding"
-        eyebrow="Tarihi Not Edin"
-        title="Düğüne Kalan"
+        eyebrow={meta.countdownEyebrow}
+        title={meta.countdownTitle}
+        compact
       />
 
       <EventDetails event={weddingEvent} variant="wedding" faqs={weddingFaq} />
 
-      <WelcomeMessage message={weddingWelcomeMessage} variant="wedding" />
+      <WeddingScheduleSection />
+
+      <WeddingGallerySection />
+
+      <RsvpCtaSection variant="wedding" />
+
+      <WeddingContactSection />
 
       <Footer variant="wedding" />
     </div>

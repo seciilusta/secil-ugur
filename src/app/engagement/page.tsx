@@ -1,58 +1,56 @@
 import type { Metadata } from "next";
 import { CountdownSection } from "@/components/CountdownSection";
+import { EngagementHero } from "@/components/EngagementHero";
 import { EventDetails } from "@/components/EventDetails";
 import { Footer } from "@/components/Footer";
-import { HeroSection } from "@/components/HeroSection";
 import { Navbar } from "@/components/Navbar";
+import { RsvpCtaSection } from "@/components/RsvpCtaSection";
 import { WelcomeMessage } from "@/components/WelcomeMessage";
 import {
-  couple,
-  engagementCTAs,
   engagementEvent,
   engagementFaq,
   engagementWelcomeMessage,
-} from "@/data/mock";
+  pageMeta,
+} from "@/data/content";
 import { getTheme } from "@/lib/theme";
 
 export const metadata: Metadata = {
-  title: "Nişan — Seçil & Uğur",
-  description: "Seçil ve Uğur'un nişan kutlamasına davetlisiniz.",
+  title: pageMeta.engagement.title,
+  description: pageMeta.engagement.description,
 };
 
 export default function EngagementPage() {
   const theme = getTheme("engagement");
+  const meta = pageMeta.engagement;
 
   return (
     <div
-      className="texture-warm min-h-screen"
+      className="texture-engagement min-h-screen"
       style={{ backgroundColor: theme.bg, color: theme.text }}
     >
       <Navbar variant="engagement" />
 
-      <HeroSection
-        eyebrow="Nişan"
-        title={couple.name}
-        subtitle="Sevdiklerimizle paylaştığımız sıcak ve samimi bir akşam"
-        ctas={engagementCTAs}
-        variant="engagement"
-        compact
-        showDates
-      />
-
-      <CountdownSection
-        targets={[{ label: "Nişan", date: engagementEvent.date }]}
-        variant="engagement"
-        eyebrow="Kutlamaya Kalan"
-        title="Geri Sayım"
-      />
-
-      <EventDetails
-        event={engagementEvent}
-        variant="engagement"
-        faqs={engagementFaq}
-      />
+      <EngagementHero />
 
       <WelcomeMessage message={engagementWelcomeMessage} variant="engagement" />
+
+      <CountdownSection
+        targets={[
+          {
+            label: engagementEvent.label,
+            date: engagementEvent.date,
+            shortDate: engagementEvent.shortDate,
+          },
+        ]}
+        variant="engagement"
+        eyebrow={meta.countdownEyebrow}
+        title="Geri Sayım"
+        compact
+      />
+
+      <EventDetails event={engagementEvent} variant="engagement" faqs={engagementFaq} />
+
+      <RsvpCtaSection variant="engagement" />
 
       <Footer variant="engagement" />
     </div>

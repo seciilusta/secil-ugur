@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import { site } from "@/data/content";
 import { fontVariables, sans } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Seçil & Uğur — Nişan & Düğün",
-  description:
-    "Seçil ve Uğur'un nişan ve düğün davetine hoş geldiniz. Kutlamalarımızın detayları burada.",
+  title: site.title,
+  description: site.description,
 };
 
 export default function RootLayout({
