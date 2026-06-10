@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Footer } from "@/components/Footer";
-import { Navbar } from "@/components/Navbar";
-import { SectionHeading } from "@/components/SectionHeading";
-import { pageMeta, rsvpForm } from "@/data/content";
+import { Footer } from "@/components/common/Footer";
+import { Navbar } from "@/components/common/Navbar";
+import { SectionHeading } from "@/components/common/SectionHeading";
+import { pageMeta, rsvpForm } from "@/data";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
 

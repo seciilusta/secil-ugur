@@ -1,0 +1,208 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { SectionHeading } from "@/components/common/SectionHeading";
+import { SectionSeparator } from "@/components/common/decorations/SectionSeparator";
+import { serif, sans } from "@/lib/fonts";
+import { getTheme } from "@/lib/theme";
+import type { CountdownTarget, ThemeVariant } from "@/types";
+
+type TimeLeft = {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+};
+
+type CountdownSectionProps = {
+  targets: CountdownTarget[];
+  variant?: ThemeVariant;
+  eyebrow?: string;
+  title?: string;
+  id?: string;
+  compact?: boolean;
+};
+
+function getTimeLeft(target: Date): TimeLeft | null {
+  const diff = target.getTime() - Date.now();
+  if (diff <= 0) return null;
+  return {
+    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((diff / (1000 * 60)) % 60),
+    seconds: Math.floor((diff / 1000) % 60),
+  };
+}
+
+function CountdownUnit({
+  value,
+  label,
+  variant,
+}: {
+  value: number;
+  label: string;
+  variant: ThemeVariant;
+}) {
+  const theme = getTheme(variant);
+
+  return (
+    <div className="flex flex-col items-center gap-2 px-2 py-3">
+      <span
+        className={`${serif.className} text-3xl font-normal tracking-wider sm:text-4xl`}
+        style={{ color: theme.text }}
+      >
+        {String(value).padStart(2, "0")}
+      </span>
+      <span
+        className={`${sans.className} text-[9px] uppercase tracking-[0.3em]`}
+        style={{ color: theme.accent }}
+      >
+        {label}
+      </span>
+    </div>
+  );
+}
+
+function CountdownBlock({
+  label,
+  date,
+  variant,
+  shortDate,
+}: {
+  label: string;
+  date: Date;
+  variant: ThemeVariant;
+  shortDate?: string;
+}) {
+  const theme = getTheme(variant);
+  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const tick = () => setTimeLeft(getTimeLeft(date));
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [date]);
+
+  const formatted = date.toLocaleDateString("tr-TR", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  return (
+    <div
+      className="flex flex-1 flex-col items-center gap-6 px-4 py-10 sm:px-8"
+      style={{ backgroundColor: theme.cardBg }}
+    >
+      <div className="text-center">
+        <p
+          className={`${sans.className} mb-2 text-[10px] uppercase tracking-[0.35em]`}
+          style={{ color: theme.accent }}
+        >
+          {label}
+        </p>
+        {shortDate && (
+          <p
+            className={`${serif.className} mb-2 text-2xl tracking-[0.12em]`}
+            style={{ color: theme.text }}
+          >
+            {shortDate}
+          </p>
+        )}
+        <p
+          className={`${serif.className} text-base font-normal italic opacity-80 sm:text-lg`}
+          style={{ color: theme.text }}
+        >
+          {formatted}
+        </p>
+      </div>
+
+      {mounted && timeLeft ? (
+        <div
+          className="grid grid-cols-4 overflow-hidden"
+          style={{ border: `1px solid ${theme.cardBorder}` }}
+        >
+          {(
+            [
+              { value: timeLeft.days, label: "Gün" },
+              { value: timeLeft.hours, label: "Saat" },
+              { value: timeLeft.minutes, label: "Dk" },
+              { value: timeLeft.seconds, label: "Sn" },
+            ] as const
+          ).map((unit, i) => (
+            <div
+              key={unit.label}
+              style={i > 0 ? { borderLeft: `1px solid ${theme.border}` } : undefined}
+            >
+              <CountdownUnit value={unit.value} label={unit.label} variant={variant} />
+            </div>
+          ))}
+        </div>
+      ) : mounted ? (
+        <p
+          className={`${serif.className} text-xl font-normal italic`}
+          style={{ color: theme.accent }}
+        >
+          Gün geldi
+        </p>
+      ) : (
+        <div className="h-16" />
+      )}
+    </div>
+  );
+}
+
+export function CountdownSection({
+  targets,
+  variant = "landing",
+  eyebrow = "Takviminize Not Edin",
+  title = "Geri Sayım",
+  id = "countdown",
+  compact = false,
+}: CountdownSectionProps) {
+  const theme = getTheme(variant);
+
+  return (
+    <section
+      id={id}
+      className={compact ? "px-6 py-12 lg:py-14" : "px-6 py-16 sm:py-24"}
+      style={compact ? { backgroundColor: theme.bg } : undefined}
+    >
+      {!compact && <SectionSeparator variant={variant} />}
+      <SectionHeading
+        eyebrow={eyebrow}
+        title={title}
+        variant={variant}
+        className={compact ? "mb-8 mt-2" : "mb-12 mt-8"}
+      />
+
+      <div
+        className={`mx-auto flex max-w-3xl ${
+          targets.length > 1
+            ? "flex-col divide-y sm:flex-row sm:divide-x sm:divide-y-0"
+            : "flex-col"
+        }`}
+        style={{
+          borderColor: theme.cardBorder,
+          borderWidth: 1,
+          borderStyle: "solid",
+          boxShadow: `inset 0 0 0 1px ${theme.border}`,
+        }}
+      >
+        {targets.map((target) => (
+          <CountdownBlock
+            key={target.label}
+            label={target.label}
+            date={new Date(target.date)}
+            variant={variant}
+            shortDate={target.shortDate}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}

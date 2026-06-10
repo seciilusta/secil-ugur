@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { site } from "@/data/content";
+import { site } from "@/data";
 import { fontVariables, sans } from "@/lib/fonts";
 import "./globals.css";
 

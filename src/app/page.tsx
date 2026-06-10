@@ -1,13 +1,12 @@
-import { CountdownSection } from "@/components/CountdownSection";
-import { EventsSplitSection } from "@/components/EventsSplitSection";
-import { Footer } from "@/components/Footer";
-import { LandingHero } from "@/components/LandingHero";
-import { Navbar } from "@/components/Navbar";
-import { RsvpCtaSection } from "@/components/RsvpCtaSection";
-import { StorySection } from "@/components/StorySection";
-import { VenuePreviewSection } from "@/components/VenuePreviewSection";
-import { WelcomeMessage } from "@/components/WelcomeMessage";
-import { countdownSection, countdownTargets, welcomeMessage } from "@/data/content";
+import { CountdownSection } from "@/components/common/CountdownSection";
+import { EventsSplitSection } from "@/components/homepage/EventsSplitSection";
+import { Footer } from "@/components/common/Footer";
+import { LandingHero } from "@/components/homepage/LandingHero";
+import { Navbar } from "@/components/common/Navbar";
+import { RsvpCtaSection } from "@/components/common/RsvpCtaSection";
+import { StorySection } from "@/components/homepage/StorySection";
+import { WelcomeMessage } from "@/components/common/WelcomeMessage";
+import { countdownSection, countdownTargets, welcomeMessage } from "@/data";
 import { getTheme } from "@/lib/theme";
 
 export default function HomePage() {
@@ -22,10 +21,7 @@ export default function HomePage() {
 
       <LandingHero />
 
-      <StorySection />
-
-      <EventsSplitSection />
-
+      {/* Countdown directly below hero — compact padding, no separator */}
       <CountdownSection
         targets={countdownTargets}
         variant="landing"
@@ -34,7 +30,9 @@ export default function HomePage() {
         compact
       />
 
-      <VenuePreviewSection />
+      <StorySection />
+
+      <EventsSplitSection />
 
       <WelcomeMessage message={welcomeMessage} variant="landing" />
 

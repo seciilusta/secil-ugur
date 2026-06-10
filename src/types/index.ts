@@ -29,6 +29,8 @@ export type Event = {
   ctaLabel: string;
   step: string;
   featured?: boolean;
+  mapsUrl?: string;
+  mapsEmbedUrl?: string;
 };
 
 export type CountdownTarget = {

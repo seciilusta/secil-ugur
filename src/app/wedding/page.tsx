@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { CountdownSection } from "@/components/CountdownSection";
-import { EventDetails } from "@/components/EventDetails";
-import { Footer } from "@/components/Footer";
-import { Navbar } from "@/components/Navbar";
-import { RsvpCtaSection } from "@/components/RsvpCtaSection";
-import { WeddingContactSection } from "@/components/WeddingContactSection";
-import { WeddingGallerySection } from "@/components/WeddingGallerySection";
-import { WeddingHero } from "@/components/WeddingHero";
-import { WeddingScheduleSection } from "@/components/WeddingScheduleSection";
-import { WeddingStorySection } from "@/components/WeddingStorySection";
-import { WelcomeMessage } from "@/components/WelcomeMessage";
+import { CountdownSection } from "@/components/common/CountdownSection";
+import { EventDetails } from "@/components/common/EventDetails";
+import { Footer } from "@/components/common/Footer";
+import { Navbar } from "@/components/common/Navbar";
+import { RsvpCtaSection } from "@/components/common/RsvpCtaSection";
+import { WeddingContactSection } from "@/components/wedding/WeddingContactSection";
+import { WeddingGallerySection } from "@/components/wedding/WeddingGallerySection";
+import { WeddingHero } from "@/components/wedding/WeddingHero";
+import { WeddingScheduleSection } from "@/components/wedding/WeddingScheduleSection";
+import { WeddingStorySection } from "@/components/wedding/WeddingStorySection";
+import { WelcomeMessage } from "@/components/common/WelcomeMessage";
 import {
   pageMeta,
   weddingEvent,
   weddingFaq,
   weddingWelcomeMessage,
-} from "@/data/content";
+} from "@/data";
 import { getTheme } from "@/lib/theme";
 
 export const metadata: Metadata = {
