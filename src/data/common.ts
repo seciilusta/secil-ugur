@@ -6,19 +6,19 @@ export const couple = {
 };
 
 export const site = {
-  title: "Seçil & Uğur — Nişan & Düğün",
+  title: "Seçil & Uğur — Nişan Daveti",
   description:
-    "Seçil ve Uğur'un nişan ve düğün davetine hoş geldiniz. Kutlamalarımızın detayları burada.",
-  navTagline: "Nişan · Düğün",
-  journeyBadge: "Nişan → Düğün",
+    "Seçil ve Uğur'un nişan davetine hoş geldiniz. Kutlama detaylarını burada bulabilirsiniz.",
+  navTagline: "Nişan Daveti",
+  journeyBadge: "Nişan",
 };
 
-export const navLinks: NavLink[] = [
-  { label: "Ana Sayfa", href: "/" },
-  { label: "Nişan", href: "/engagement" },
-  { label: "Düğün", href: "/wedding" },
-  { label: "LCV", href: "/rsvp" },
-];
+export const navLinks: NavLink[] = [];
+
+// Which invitation the homepage ("/") routes guests to.
+// Flip to "wedding" when you want "/" to lead to the wedding invitation.
+// Both /engagement and /wedding stay reachable directly by URL regardless.
+export const activeInvitation: "engagement" | "wedding" = "engagement";
 
 export const engagementEvent: Event = {
   slug: "engagement",
@@ -39,6 +39,7 @@ export const engagementEvent: Event = {
   href: "/engagement",
   ctaLabel: "Nişan Detayları",
   step: "I",
+  address: "Du Urla, Urla, Manisa",
   mapsUrl: "https://maps.app.goo.gl/7LqxhNYMFKaZsswPA",
   mapsEmbedUrl:
     "https://www.google.com/maps/embed/v1/place?key=AIzaSyCcywKcxXeMZiMwLDcLgyEnNglcLOyB_qw&q=Du+Urla+Manisa&zoom=14",
@@ -97,7 +98,6 @@ export const pageMeta = {
     title: `Nişan — ${couple.name}`,
     description: "Seçil ve Uğur'un nişan kutlamasına davetlisiniz.",
     heroEyebrow: engagementEvent.label,
-    heroSubtitle: "Sevdiklerimizle paylaştığımız sıcak ve samimi bir akşam",
     countdownEyebrow: "Kutlamaya Kalan",
   },
   wedding: {

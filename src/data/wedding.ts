@@ -1,5 +1,4 @@
 import type { CTA, FaqItem } from "@/types";
-import { engagementEvent } from "@/data/common";
 
 export const weddingWelcomeMessage =
   "Düğünümüzü birlikte kutlamak, bizim için en güzel hediye. Sizi aramızda görmekten büyük mutluluk duyarız.";
@@ -39,7 +38,6 @@ export const weddingContact = {
 
 export const weddingCTAs: CTA[] = [
   { label: "LCV", href: "/rsvp", style: "primary" },
-  { label: engagementEvent.ctaLabel, href: engagementEvent.href, style: "secondary" },
 ];
 
 export const weddingFaq: FaqItem[] = [

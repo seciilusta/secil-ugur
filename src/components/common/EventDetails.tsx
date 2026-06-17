@@ -3,15 +3,14 @@ import { SectionSeparator } from "@/components/common/decorations/SectionSeparat
 import { detailLabels } from "@/data";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
-import type { Event, FaqItem, ThemeVariant } from "@/types";
+import type { Event, ThemeVariant } from "@/types";
 
 type EventDetailsProps = {
   event: Event;
   variant: ThemeVariant;
-  faqs?: FaqItem[];
 };
 
-export function EventDetails({ event, variant, faqs }: EventDetailsProps) {
+export function EventDetails({ event, variant }: EventDetailsProps) {
   const theme = getTheme(variant);
 
   const details = [
@@ -25,13 +24,13 @@ export function EventDetails({ event, variant, faqs }: EventDetailsProps) {
   ] as { label: string; value: string; mapsUrl?: string }[];
 
   return (
-    <section className="px-6 py-10 lg:py-12">
+    <section className="px-4 py-8 sm:px-6 sm:py-10 lg:py-12">
       <SectionSeparator variant={variant} />
       <SectionHeading
         eyebrow="Bilgiler"
         title="Bilmeniz Gerekenler"
         variant={variant}
-        className="mb-12 mt-8"
+        className="mb-8 mt-6 sm:mb-12 sm:mt-8"
       />
 
       <div
@@ -41,17 +40,17 @@ export function EventDetails({ event, variant, faqs }: EventDetailsProps) {
         {details.map((detail) => (
           <div
             key={detail.label}
-            className="px-6 py-8 text-center sm:px-8 sm:text-left"
+            className="px-5 py-6 text-center sm:px-8 sm:py-8 sm:text-left"
             style={{ backgroundColor: theme.cardBg }}
           >
             <p
-              className={`${sans.className} mb-3 text-[10px] uppercase tracking-[0.3em]`}
+              className={`${sans.className} mb-2 text-[9px] uppercase tracking-[0.24em] sm:mb-3 sm:text-[10px] sm:tracking-[0.3em]`}
               style={{ color: theme.accent }}
             >
               {detail.label}
             </p>
             <p
-              className={`${serif.className} text-lg font-normal leading-snug sm:text-xl`}
+              className={`${serif.className} text-base font-normal leading-snug sm:text-xl`}
               style={{ color: theme.text }}
             >
               {detail.value}
@@ -61,7 +60,7 @@ export function EventDetails({ event, variant, faqs }: EventDetailsProps) {
                 href={detail.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${sans.className} mt-3 inline-flex items-center gap-1 text-[10px] uppercase tracking-[0.22em] transition-opacity hover:opacity-70`}
+                className={`${sans.className} mt-2 inline-flex items-center gap-1 text-[9px] uppercase tracking-[0.18em] transition-opacity hover:opacity-70 sm:mt-3 sm:text-[10px] sm:tracking-[0.22em]`}
                 style={{ color: theme.accent }}
               >
                 Yol Tarifi →
@@ -72,47 +71,11 @@ export function EventDetails({ event, variant, faqs }: EventDetailsProps) {
       </div>
 
       <p
-        className={`${serif.className} mx-auto mt-12 max-w-2xl text-center text-lg font-normal leading-relaxed sm:text-xl`}
+        className={`${serif.className} mx-auto mt-8 max-w-2xl text-center text-base font-normal leading-relaxed sm:mt-12 sm:text-xl`}
         style={{ color: theme.text }}
       >
         {event.description}
       </p>
-
-      {faqs && faqs.length > 0 && (
-        <div className="mx-auto mt-20 max-w-2xl">
-          <SectionHeading
-            eyebrow="Sorular"
-            title="Sık Sorulanlar"
-            variant={variant}
-            className="mb-10"
-          />
-          <dl className="space-y-0">
-            {faqs.map((faq) => (
-              <div
-                key={faq.question}
-                className="border-t px-4 py-8"
-                style={{
-                  borderColor: theme.border,
-                  backgroundColor: theme.cardBg,
-                }}
-              >
-                <dt
-                  className={`${serif.className} mb-3 text-lg font-normal sm:text-xl`}
-                  style={{ color: theme.text }}
-                >
-                  {faq.question}
-                </dt>
-                <dd
-                  className={`${sans.className} text-sm font-light leading-relaxed opacity-75`}
-                  style={{ color: theme.text }}
-                >
-                  {faq.answer}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      )}
     </section>
   );
 }

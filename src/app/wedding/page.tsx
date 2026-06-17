@@ -13,7 +13,6 @@ import { WelcomeMessage } from "@/components/common/WelcomeMessage";
 import {
   pageMeta,
   weddingEvent,
-  weddingFaq,
   weddingWelcomeMessage,
 } from "@/data";
 import { getTheme } from "@/lib/theme";
@@ -54,7 +53,7 @@ export default function WeddingPage() {
         compact
       />
 
-      <EventDetails event={weddingEvent} variant="wedding" faqs={weddingFaq} />
+      <EventDetails event={weddingEvent} variant="wedding" />
 
       <WeddingScheduleSection />
 

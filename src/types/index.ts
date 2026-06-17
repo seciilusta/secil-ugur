@@ -31,6 +31,7 @@ export type Event = {
   featured?: boolean;
   mapsUrl?: string;
   mapsEmbedUrl?: string;
+  address?: string;
 };
 
 export type CountdownTarget = {

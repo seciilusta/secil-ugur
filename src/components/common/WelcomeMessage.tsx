@@ -16,9 +16,9 @@ export function WelcomeMessage({
   const dividerVariant = variant === "engagement" ? "floral" : "ornate";
 
   return (
-    <section className="px-6 py-10 lg:py-12">
+    <section className="px-4 py-8 sm:px-6 sm:py-10 lg:py-12">
       <div
-        className="mx-auto max-w-2xl px-8 py-10 text-center sm:px-12 sm:py-12"
+        className="mx-auto max-w-2xl px-5 py-8 text-center sm:px-10 sm:py-11 lg:px-12 lg:py-12"
         style={{
           backgroundColor: theme.cardBg,
           boxShadow: `inset 0 0 0 1px ${theme.accent}44, inset 0 0 0 6px transparent, inset 0 0 0 7px ${theme.gold}28`,
@@ -28,10 +28,10 @@ export function WelcomeMessage({
           color={theme.text}
           accentColor={theme.accent}
           variant={dividerVariant}
-          className="mb-8"
+          className="mb-6 sm:mb-8"
         />
         <p
-          className={`${serif.className} text-lg font-normal leading-relaxed tracking-wide sm:text-xl sm:leading-relaxed`}
+          className={`${serif.className} text-base font-normal leading-relaxed tracking-wide sm:text-xl sm:leading-relaxed`}
           style={{ color: theme.text }}
         >
           {message}
@@ -40,7 +40,7 @@ export function WelcomeMessage({
           color={theme.text}
           accentColor={theme.accent}
           variant={dividerVariant}
-          className="mt-8"
+          className="mt-6 sm:mt-8"
         />
       </div>
     </section>

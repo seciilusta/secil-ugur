@@ -22,7 +22,7 @@ export function Footer({ variant = "landing" }: FooterProps) {
 
   return (
     <footer
-      className="px-6 py-14 text-center"
+      className="px-4 py-10 text-center sm:px-6 sm:py-14"
       style={{ borderTop: `1px solid ${theme.border}`, backgroundColor: theme.bgAccent }}
     >
       <Monogram
@@ -38,13 +38,13 @@ export function Footer({ variant = "landing" }: FooterProps) {
         className="mb-6"
       />
       <p
-        className={`${serif.className} mb-2 text-2xl font-normal tracking-wide sm:text-3xl`}
+        className={`${serif.className} mb-2 text-xl font-normal tracking-wide sm:text-3xl`}
         style={{ color: theme.text }}
       >
         {couple.name}
       </p>
       <p
-        className={`${sans.className} text-[10px] uppercase tracking-[0.35em]`}
+        className={`${sans.className} text-[9px] uppercase tracking-[0.22em] sm:text-[10px] sm:tracking-[0.35em]`}
         style={{ color: theme.accent }}
       >
         {dates}

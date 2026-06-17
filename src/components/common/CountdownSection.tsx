@@ -46,15 +46,15 @@ function CountdownUnit({
   const theme = getTheme(variant);
 
   return (
-    <div className="flex flex-col items-center gap-2 px-2 py-3">
+    <div className="flex flex-col items-center gap-2 px-1.5 py-2.5 sm:px-2 sm:py-3">
       <span
-        className={`${serif.className} text-3xl font-normal tracking-wider sm:text-4xl`}
+        className={`${serif.className} text-2xl font-normal tracking-wider sm:text-4xl`}
         style={{ color: theme.text }}
       >
         {String(value).padStart(2, "0")}
       </span>
       <span
-        className={`${sans.className} text-[9px] uppercase tracking-[0.3em]`}
+        className={`${sans.className} text-[8px] uppercase tracking-[0.22em] sm:text-[9px] sm:tracking-[0.3em]`}
         style={{ color: theme.accent }}
       >
         {label}
@@ -95,26 +95,25 @@ function CountdownBlock({
 
   return (
     <div
-      className="flex flex-1 flex-col items-center gap-6 px-4 py-10 sm:px-8"
-      style={{ backgroundColor: theme.cardBg }}
-    >
+      className="flex flex-1 flex-col items-center gap-5 px-3 py-8 sm:gap-6 sm:px-8 sm:py-10"
+      style={{ backgroundColor: theme.bg }}    >
       <div className="text-center">
         <p
-          className={`${sans.className} mb-2 text-[10px] uppercase tracking-[0.35em]`}
+          className={`${sans.className} mb-2 text-[9px] uppercase tracking-[0.25em] sm:text-[10px] sm:tracking-[0.35em]`}
           style={{ color: theme.accent }}
         >
           {label}
         </p>
         {shortDate && (
           <p
-            className={`${serif.className} mb-2 text-2xl tracking-[0.12em]`}
+            className={`${serif.className} mb-2 text-xl tracking-[0.12em] sm:text-2xl`}
             style={{ color: theme.text }}
           >
             {shortDate}
           </p>
         )}
         <p
-          className={`${serif.className} text-base font-normal italic opacity-80 sm:text-lg`}
+          className={`${serif.className} text-sm font-normal italic opacity-80 sm:text-lg`}
           style={{ color: theme.text }}
         >
           {formatted}
@@ -169,15 +168,18 @@ export function CountdownSection({
   return (
     <section
       id={id}
-      className={compact ? "px-6 py-12 lg:py-14" : "px-6 py-16 sm:py-24"}
-      style={compact ? { backgroundColor: theme.bg } : undefined}
+      className={
+        compact
+          ? "px-4 py-8 sm:px-6 sm:py-12 lg:py-14"
+          : "px-4 py-10 sm:px-6 sm:py-16 lg:py-24"
+      }
     >
       {!compact && <SectionSeparator variant={variant} />}
       <SectionHeading
         eyebrow={eyebrow}
         title={title}
         variant={variant}
-        className={compact ? "mb-8 mt-2" : "mb-12 mt-8"}
+        className={compact ? "mb-6 mt-2 sm:mb-8" : "mb-8 mt-6 sm:mb-12 sm:mt-8"}
       />
 
       <div
