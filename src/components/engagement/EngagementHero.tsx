@@ -8,21 +8,19 @@ export function EngagementHero() {
 
   return (
     <section className="relative overflow-hidden">
-      <div aria-hidden />
       <div className="texture-engagement absolute inset-0" aria-hidden />
 
-      <div className="relative mx-auto flex max-w-3xl flex-col items-center px-4 py-12 text-center sm:px-6 sm:py-16 lg:py-20">
-        <Monogram size="lg" className="mb-5 sm:mb-7" />
+      <div className="relative mx-auto flex max-w-3xl flex-col items-center px-4 py-8 text-center sm:px-6 sm:py-20 lg:py-4">
+        <Monogram size="xl" className="mb-6 sm:mb-8" />
 
         <p
-          className={`${sans.className} mb-3 text-[9px] uppercase tracking-[0.35em] sm:mb-4 sm:text-[10px] sm:tracking-[0.42em]`}
+          className={`${sans.className} mb-4 text-xs font-medium uppercase tracking-[0.28em] sm:mb-5 sm:text-sm sm:tracking-[0.34em]`}
           style={{ color: theme.accent }}
         >
           Nişan
         </p>
-
         <h1
-          className={`${serif.className} mb-4 text-4xl font-normal leading-[1.05] tracking-wide sm:mb-5 sm:text-6xl lg:text-7xl`}
+          className={`${serif.className} mb-5 text-[40px] font-normal leading-[1.05] tracking-wide sm:mb-6 sm:text-[60px] lg:text-[72px]`}
           style={{ color: theme.text }}
         >
           Seçil{" "}
@@ -36,11 +34,11 @@ export function EngagementHero() {
           color={theme.text}
           accentColor={theme.gold}
           variant="floral"
-          className="mb-5"
+          className="mb-6"
         />
 
         <p
-          className={`${serif.className} text-2xl tracking-[0.12em] sm:text-3xl`}
+          className={`${serif.className} text-2xl tracking-[0.12em] sm:text-3xl lg:text-4xl`}
           style={{ color: theme.accent }}
         >
           04.07.2026

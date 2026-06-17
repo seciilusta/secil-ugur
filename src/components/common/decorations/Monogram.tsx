@@ -1,8 +1,6 @@
 import Image from "next/image";
 
 type MonogramProps = {
-  color?: string;
-  accentColor?: string;
   size?: "sm" | "md" | "lg" | "xl";
   className?: string;
 };
@@ -14,17 +12,14 @@ const sizes = {
   xl: "h-36 w-36 sm:h-44 sm:w-44",
 };
 
-export function Monogram({ size = "lg", className = "" }: MonogramProps) {
+export function Monogram({ size = "xl", className = "" }: MonogramProps) {
   return (
-    <div
-      className={`relative ${sizes[size]} ${className}`}
-      aria-hidden
-    >
+    <div className={`relative ${sizes[size]} ${className}`} aria-hidden>
       <Image
         src="/monogram-transparent.png"
         alt="Seçil & Uğur monogram"
         fill
-        sizes="(max-width: 640px) 8rem, 11rem"
+        sizes="(max-width: 640px) 9rem, 11rem"
         className="object-contain"
         priority
       />

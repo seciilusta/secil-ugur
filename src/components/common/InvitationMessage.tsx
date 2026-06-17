@@ -24,7 +24,7 @@ export function InvitationMessage({ variant = "landing" }: InvitationMessageProp
         >
           {variant === "engagement" ? (
             <>
-              Nişanımızı sevdiklerimizle, sade ve içten bir akşamda kutlamak istiyoruz. Bu özel
+              Nişanımızı sevdiklerimizle kutlamak istiyoruz. Bu özel
               günde yanımızda olmanız bizi çok mutlu eder.
             </>
           ) : variant === "wedding" ? (

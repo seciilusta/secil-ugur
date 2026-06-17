@@ -16,7 +16,7 @@ export default function EngagementPage() {
 
   return (
     <div
-      className="texture-engagement relative min-h-screen overflow-x-hidden"
+      className="relative min-h-screen overflow-x-hidden"
       style={{ backgroundColor: theme.bg, color: theme.text }}
     >
       <BotanicalSideRails />
@@ -24,8 +24,9 @@ export default function EngagementPage() {
       <div className="relative z-10 mx-auto w-full max-w-4xl px-6 sm:px-8 lg:px-10">
         <EngagementHero />
         <InvitationMessage variant="engagement" />
-        <CountdownSection variant="engagement" compact />
         <EngagementEventDetailsSection />
+        <CountdownSection variant="engagement" compact />
+
       </div>
     </div>
   );

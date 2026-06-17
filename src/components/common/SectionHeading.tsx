@@ -10,7 +10,6 @@ type SectionHeadingProps = {
   className?: string;
   align?: "center" | "left";
 };
-
 export function SectionHeading({
   eyebrow,
   title,
@@ -25,17 +24,19 @@ export function SectionHeading({
   return (
     <div className={`${alignClass} ${className}`}>
       <p
-        className={`${sans.className} mb-4 text-[10px] uppercase tracking-[0.35em]`}
+        className={`${sans.className} mb-4 text-xs font-medium uppercase tracking-[0.28em] sm:text-sm sm:tracking-[0.34em]`}
         style={{ color: theme.accent }}
       >
         {eyebrow}
       </p>
+
       <h2
         className={`${serif.className} mb-6 text-3xl font-normal tracking-wide sm:text-4xl md:text-5xl`}
         style={{ color: theme.text }}
       >
         {title}
       </h2>
+
       <DecorativeDivider
         color={theme.text}
         accentColor={theme.accent}

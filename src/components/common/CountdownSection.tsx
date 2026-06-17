@@ -45,13 +45,13 @@ function CountdownUnit({
   return (
     <div className="flex flex-col items-center gap-2 px-1.5 py-2.5 sm:px-2 sm:py-3">
       <span
-        className={`${serif.className} text-2xl font-normal tracking-wider sm:text-4xl`}
+        className={`${serif.className} text-[26px] font-normal tracking-wider sm:text-[40px]`}
         style={{ color: theme.text }}
       >
         {String(value).padStart(2, "0")}
       </span>
       <span
-        className={`${sans.className} text-[8px] uppercase tracking-[0.22em] sm:text-[9px] sm:tracking-[0.3em]`}
+        className={`${sans.className} text-[10px] font-medium uppercase tracking-[0.18em] sm:text-[11px] sm:tracking-[0.24em]`}
         style={{ color: theme.accent }}
       >
         {label}
@@ -96,12 +96,12 @@ function CountdownBlock({
       style={{ backgroundColor: theme.bg }}
     >
       <div className="text-center">
-        <p
-          className={`${sans.className} mb-2 text-[9px] uppercase tracking-[0.25em] sm:text-[10px] sm:tracking-[0.35em]`}
-          style={{ color: theme.accent }}
-        >
-          {label}
-        </p>
+      <p
+      className={`${sans.className} mb-3 text-xs font-medium uppercase tracking-[0.26em] sm:text-sm sm:tracking-[0.32em]`}
+      style={{ color: theme.accent }}
+      >
+      {label}
+      </p>
         {shortDate && (
           <p
             className={`${serif.className} mb-2 text-xl tracking-[0.12em] sm:text-2xl`}
@@ -205,7 +205,7 @@ export function CountdownSection({
         >
           <CountdownBlock
             label="Nişan"
-            date={new Date("2026-07-04T15:00:00")}
+            date={new Date("2026-07-04T15:00:00+03:00")}
             variant={variant}
             shortDate="04.07.2026"
           />
@@ -222,7 +222,7 @@ export function CountdownSection({
         >
           <CountdownBlock
             label="Düğün"
-            date={new Date("2026-10-04T19:00:00")}
+            date={new Date("2026-10-04T19:00:00+03:00")}
             variant={variant}
             shortDate="04.10.2026"
           />

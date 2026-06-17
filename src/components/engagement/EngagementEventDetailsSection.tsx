@@ -69,7 +69,7 @@ function ExternalButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`${sans.className} pointer-events-auto inline-flex h-11 min-w-[168px] items-center justify-center rounded-full px-8 text-[10px] uppercase tracking-[0.24em] transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 sm:h-12 sm:text-[11px] sm:tracking-[0.28em]`}
+      className={`${sans.className} pointer-events-auto inline-flex h-11 min-w-[160px] items-center justify-center rounded-full px-7 text-[10px] uppercase tracking-[0.22em] transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 sm:h-12 sm:min-w-[170px] sm:text-[11px] sm:tracking-[0.26em]`}
       style={
         variant === "light"
           ? {
@@ -80,7 +80,7 @@ function ExternalButton({
           : {
               backgroundColor: theme.buttonBg,
               color: theme.buttonText,
-              boxShadow: `0 16px 40px ${theme.accent}24`,
+              boxShadow: `0 14px 34px ${theme.accent}20`,
             }
       }
     >
@@ -96,10 +96,116 @@ export function EngagementEventDetailsSection() {
   return (
     <section
       className="pt-8 pb-12 sm:pt-10 sm:pb-14 lg:pt-12 lg:pb-16"
-      style={{ backgroundColor: theme.bg }}
     >
       <SectionSeparator variant="engagement" />
 
+      <div
+  className="mx-auto max-w-2xl px-5 py-8 text-center sm:px-10 sm:py-11 lg:px-12 lg:py-12"
+  style={{
+    backgroundColor: theme.cardBg,
+    border: `1px solid ${theme.cardBorder}`,
+    borderRadius: "28px",
+    maskImage:
+      "radial-gradient(circle at top left, transparent 0 20px, black 21px), radial-gradient(circle at top right, transparent 0 20px, black 21px), radial-gradient(circle at bottom left, transparent 0 20px, black 21px), radial-gradient(circle at bottom right, transparent 0 20px, black 21px)",
+    WebkitMaskImage:
+      "radial-gradient(circle at top left, transparent 0 20px, black 21px), radial-gradient(circle at top right, transparent 0 20px, black 21px), radial-gradient(circle at bottom left, transparent 0 20px, black 21px), radial-gradient(circle at bottom right, transparent 0 20px, black 21px)",
+  }}
+>
+        <p
+            className={`${sans.className} mb-7 text-xs font-medium uppercase tracking-[0.28em] sm:text-sm sm:tracking-[0.34em]`}
+            style={{ color: theme.accent }}
+          >
+            Etkinlik Detayları
+          </p>
+
+          <div className="mb-6 flex items-center justify-center">
+            <span
+              className="h-px w-16 sm:w-20"
+              style={{ backgroundColor: theme.border }}
+            />
+            <span className="mx-4" style={{ color: theme.accent }}>
+              <ClockIcon color={theme.accent} />
+            </span>
+            <span
+              className="h-px w-16 sm:w-20"
+              style={{ backgroundColor: theme.border }}
+            />
+          </div>
+
+          <p
+            className={`${sans.className} mb-2 text-xl tracking-[0.04em] sm:text-2xl`}
+            style={{ color: theme.text }}
+          >
+            <span>{day}</span>{" "}
+            <span style={{ color: theme.accent }}>{month}</span>{" "}
+            <span>{year}</span>
+          </p>
+
+          <p
+            className={`${sans.className} mb-8 text-sm sm:text-[15px]`}
+            style={{ color: theme.accent }}
+          >
+            CUMARTESİ | 15.00
+          </p>
+
+          <div className="mb-8 grid w-full max-w-sm grid-cols-2 gap-6 sm:gap-8">
+            <div className="flex flex-col items-center gap-3">
+              <span style={{ color: theme.accent }}>
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden>
+                  <path
+                    d="M12 4c2.5 0 4.5 2 4.5 4.5S14.5 13 12 13s-4.5-2-4.5-4.5S9.5 4 12 4Z"
+                    stroke="currentColor"
+                    strokeWidth="1.2"
+                  />
+                  <path
+                    d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"
+                    stroke="currentColor"
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
+              <p
+                className={`${sans.className} text-[13px] uppercase tracking-[0.12em] sm:text-[15px]`}
+                style={{ color: theme.text }}
+              >
+                Usta Ailesi
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center gap-3">
+              <span style={{ color: theme.accent }}>
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden>
+                  <path
+                    d="M8 8h8v3H8V8Z"
+                    stroke="currentColor"
+                    strokeWidth="1.2"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M6 11h12v2a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4v-2Z"
+                    stroke="currentColor"
+                    strokeWidth="1.2"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M12 17v3M9 20h6"
+                    stroke="currentColor"
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
+              <p
+                className={`${sans.className} text-[13px] uppercase tracking-[0.12em] sm:text-[15px]`}
+                style={{ color: theme.text }}
+              >
+                Şenol Ailesi
+              </p>
+            </div>
+          </div>
+        </div>
+              
       <div
         className="mx-auto mt-6 grid max-w-5xl items-stretch overflow-hidden sm:mt-8 lg:grid-cols-2"
         style={{
@@ -111,9 +217,9 @@ export function EngagementEventDetailsSection() {
           className="flex flex-col items-center px-6 py-10 text-center sm:px-10 sm:py-12"
           style={{ backgroundColor: theme.cardBg }}
         >
-          <p
-            className={`${serif.className} mb-5 text-2xl font-normal sm:text-[1.65rem]`}
-            style={{ color: theme.text }}
+           <p
+            className={`${sans.className} mb-7 text-xs font-medium uppercase tracking-[0.28em] sm:text-sm sm:tracking-[0.34em]`}
+            style={{ color: theme.accent }}
           >
             Etkinlik Detayları
           </p>
