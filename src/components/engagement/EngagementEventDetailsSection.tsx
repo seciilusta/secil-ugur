@@ -1,14 +1,7 @@
 import type { ReactNode } from "react";
 import { SectionSeparator } from "@/components/common/decorations/SectionSeparator";
-import { engagementEvent, engagementHostFamilies } from "@/data";
-import { buildGoogleCalendarUrl } from "@/lib/calendar";
 import { sans, serif } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
-import type { Event } from "@/types";
-
-type EngagementEventDetailsSectionProps = {
-  event?: Event;
-};
 
 function getIstanbulDate(isoDate: string) {
   const hasTime = isoDate.includes("T");
@@ -96,13 +89,9 @@ function ExternalButton({
   );
 }
 
-export function EngagementEventDetailsSection({
-  event = engagementEvent,
-}: EngagementEventDetailsSectionProps) {
+export function EngagementEventDetailsSection() {
   const theme = getTheme("engagement");
-  const { day, month, year } = formatDateParts(event.date);
-  const calendarUrl = buildGoogleCalendarUrl(event);
-  const address = event.address ?? `${event.venue}, ${event.location}`;
+  const { day, month, year } = formatDateParts("2026-07-04T15:00:00");
 
   return (
     <section
@@ -118,7 +107,6 @@ export function EngagementEventDetailsSection({
           boxShadow: `0 24px 80px ${theme.accent}18`,
         }}
       >
-        {/* Event details */}
         <div
           className="flex flex-col items-center px-6 py-10 text-center sm:px-10 sm:py-12"
           style={{ backgroundColor: theme.cardBg }}
@@ -157,7 +145,7 @@ export function EngagementEventDetailsSection({
             className={`${sans.className} mb-8 text-sm sm:text-[15px]`}
             style={{ color: theme.accent }}
           >
-            {event.weekday.toLocaleUpperCase("tr-TR")} | {event.time}
+            CUMARTESİ | 15.00
           </p>
 
           <div className="mb-8 grid w-full max-w-sm grid-cols-2 gap-6 sm:gap-8">
@@ -177,12 +165,11 @@ export function EngagementEventDetailsSection({
                   />
                 </svg>
               </span>
-
               <p
                 className={`${sans.className} text-[13px] uppercase tracking-[0.12em] sm:text-[15px]`}
                 style={{ color: theme.text }}
               >
-                {engagementHostFamilies.bride}
+                Usta Ailesi
               </p>
             </div>
 
@@ -209,49 +196,37 @@ export function EngagementEventDetailsSection({
                   />
                 </svg>
               </span>
-
               <p
                 className={`${sans.className} text-[13px] uppercase tracking-[0.12em] sm:text-[15px]`}
                 style={{ color: theme.text }}
               >
-                {engagementHostFamilies.groom}
+                Şenol Ailesi
               </p>
             </div>
           </div>
 
-          {event.dressCode && (
-            <p
-              className={`${sans.className} mb-8 max-w-sm text-[13px] leading-relaxed sm:text-[15px]`}
-              style={{ color: theme.muted }}
-            >
-              <strong style={{ color: theme.text }}>Kıyafet:</strong>{" "}
-              {event.dressCode}
-            </p>
-          )}
-
-          <ExternalButton href={calendarUrl}>Takvime Ekle</ExternalButton>
+          <ExternalButton href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Se%C3%A7il+%26+U%C4%9Fur+%E2%80%94+Ni%C5%9Fan&dates=20260704T120000Z%2F20260704T150000Z&location=Du+Urla%2C+Urla%2C+Manisa&details=Ailemiz+ve+yak%C4%B1n+dostlar%C4%B1m%C4%B1zla+birlikte%2C+s%C4%B1cak+ve+samimi+bir+ak%C5%9Fam+ge%C3%A7irece%C4%9Fiz.+Sizi+de+aram%C4%B1zda+g%C3%B6rmek+isteriz.&ctz=Europe%2FIstanbul">
+            Takvime Ekle
+          </ExternalButton>
         </div>
 
-        {/* Location + map */}
         <div
           className="relative isolate min-h-[420px] overflow-hidden sm:min-h-[460px] lg:min-h-full lg:self-stretch"
           style={{ backgroundColor: theme.bgAccent }}
         >
-          {event.mapsEmbedUrl && (
-            <div
-              className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+          <div
+            className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+            aria-hidden
+          >
+            <iframe
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCcywKcxXeMZiMwLDcLgyEnNglcLOyB_qw&q=Du+Urla+Manisa&zoom=14"
+              title="Du Urla haritası"
+              className="pointer-events-none absolute inset-0 h-full w-full border-0"
+              loading="lazy"
+              tabIndex={-1}
               aria-hidden
-            >
-              <iframe
-                src={event.mapsEmbedUrl}
-                title={`${event.venue} haritası`}
-                className="pointer-events-none absolute inset-0 h-full w-full border-0"
-                loading="lazy"
-                tabIndex={-1}
-                aria-hidden
-              />
-            </div>
-          )}
+            />
+          </div>
 
           <div
             className="pointer-events-none absolute inset-0 z-[1]"
@@ -267,21 +242,19 @@ export function EngagementEventDetailsSection({
               className={`${sans.className} mb-4 max-w-xs text-base font-semibold uppercase tracking-[0.14em] sm:text-lg`}
               style={{ color: "#FFFFFF" }}
             >
-              {event.venue}
+              Du Urla
             </p>
 
             <p
               className={`${sans.className} mb-8 max-w-sm text-[13px] leading-relaxed sm:text-[15px]`}
               style={{ color: "rgba(255,255,255,0.92)" }}
             >
-              <strong>Adres:</strong> {address}
+              <strong>Adres:</strong> Du Urla, Urla, Manisa
             </p>
 
-            {event.mapsUrl && (
-              <ExternalButton href={event.mapsUrl} variant="light">
-                Yol Tarifi Al
-              </ExternalButton>
-            )}
+            <ExternalButton href="https://maps.app.goo.gl/7LqxhNYMFKaZsswPA" variant="light">
+              Yol Tarifi Al
+            </ExternalButton>
           </div>
         </div>
       </div>

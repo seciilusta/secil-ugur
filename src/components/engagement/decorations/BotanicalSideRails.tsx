@@ -22,7 +22,6 @@ function SideRail({ side }: { side: Side }) {
       style={{ opacity: 0.85 }}
       aria-hidden
     >
-      {/* Top cap */}
       <img
         src={`/botanical-${side}-top.png`}
         alt=""
@@ -30,7 +29,6 @@ function SideRail({ side }: { side: Side }) {
         className="block w-full select-none"
       />
 
-      {/* Middle: tiles vertically to fill whatever height remains — no gaps at any size */}
       <div
         className="min-h-0 flex-1"
         style={{
@@ -41,7 +39,6 @@ function SideRail({ side }: { side: Side }) {
         }}
       />
 
-      {/* Bottom cap */}
       <img
         src={`/botanical-${side}-bottom.png`}
         alt=""

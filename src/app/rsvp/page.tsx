@@ -2,18 +2,16 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/common/Footer";
 import { Navbar } from "@/components/common/Navbar";
 import { SectionHeading } from "@/components/common/SectionHeading";
-import { pageMeta, rsvpForm } from "@/data";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
 
 export const metadata: Metadata = {
-  title: pageMeta.rsvp.title,
-  description: pageMeta.rsvp.description,
+  title: "LCV — Seçil & Uğur",
+  description: "Seçil ve Uğur'un nişan ve düğün davetine katılımınızı bildirin.",
 };
 
 export default function RsvpPage() {
   const theme = getTheme("wedding");
-  const meta = pageMeta.rsvp;
 
   const inputClass = `${sans.className} w-full border bg-transparent px-4 py-3 text-sm font-light outline-none transition-colors focus:ring-1`;
   const labelClass = `${sans.className} mb-2 block text-[11px] uppercase tracking-[0.2em]`;
@@ -27,8 +25,8 @@ export default function RsvpPage() {
 
       <section className="px-6 py-16 sm:py-24">
         <SectionHeading
-          eyebrow={meta.eyebrow}
-          title={meta.heading}
+          eyebrow="Katılımınızı Bildirin"
+          title="LCV"
           variant="wedding"
           className="mb-4"
         />
@@ -36,7 +34,7 @@ export default function RsvpPage() {
           className={`${serif.className} mx-auto mb-12 max-w-lg text-center text-lg font-light italic`}
           style={{ color: theme.accent }}
         >
-          {meta.subtitle}
+          Sizi aramızda görmek isteriz
         </p>
 
         <form
@@ -49,7 +47,7 @@ export default function RsvpPage() {
         >
           <div>
             <label htmlFor="name" className={labelClass} style={{ color: theme.accent }}>
-              {rsvpForm.nameLabel}
+              Ad Soyad
             </label>
             <input
               id="name"
@@ -58,13 +56,13 @@ export default function RsvpPage() {
               required
               className={inputClass}
               style={{ borderColor: theme.cardBorder, color: theme.text }}
-              placeholder={rsvpForm.namePlaceholder}
+              placeholder="Adınız ve soyadınız"
             />
           </div>
 
           <div>
             <label htmlFor="phone" className={labelClass} style={{ color: theme.accent }}>
-              {rsvpForm.phoneLabel}
+              Telefon
             </label>
             <input
               id="phone"
@@ -73,13 +71,13 @@ export default function RsvpPage() {
               required
               className={inputClass}
               style={{ borderColor: theme.cardBorder, color: theme.text }}
-              placeholder={rsvpForm.phonePlaceholder}
+              placeholder="05xx xxx xx xx"
             />
           </div>
 
           <div>
             <label htmlFor="email" className={labelClass} style={{ color: theme.accent }}>
-              {rsvpForm.emailLabel}
+              E-posta
             </label>
             <input
               id="email"
@@ -87,36 +85,51 @@ export default function RsvpPage() {
               type="email"
               className={inputClass}
               style={{ borderColor: theme.cardBorder, color: theme.text }}
-              placeholder={rsvpForm.emailPlaceholder}
+              placeholder="ornek@email.com"
             />
           </div>
 
           <fieldset>
             <legend className={labelClass} style={{ color: theme.accent }}>
-              {rsvpForm.attendanceLegend}
+              Hangi davete katılıyorsunuz?
             </legend>
             <div className="mt-4 space-y-3">
-              {rsvpForm.attendanceOptions.map((option) => (
-                <label
-                  key={option.value}
-                  className={`${sans.className} flex items-center gap-3 text-sm font-light`}
-                >
-                  <input
-                    type="radio"
-                    name="attendance"
-                    value={option.value}
-                    required
-                    className="h-4 w-4 accent-[#2C1810]"
-                  />
-                  {option.label}
-                </label>
-              ))}
+              <label className={`${sans.className} flex items-center gap-3 text-sm font-light`}>
+                <input
+                  type="radio"
+                  name="attendance"
+                  value="engagement"
+                  required
+                  className="h-4 w-4 accent-[#2C1810]"
+                />
+                Nişan
+              </label>
+              <label className={`${sans.className} flex items-center gap-3 text-sm font-light`}>
+                <input
+                  type="radio"
+                  name="attendance"
+                  value="wedding"
+                  required
+                  className="h-4 w-4 accent-[#2C1810]"
+                />
+                Düğün
+              </label>
+              <label className={`${sans.className} flex items-center gap-3 text-sm font-light`}>
+                <input
+                  type="radio"
+                  name="attendance"
+                  value="both"
+                  required
+                  className="h-4 w-4 accent-[#2C1810]"
+                />
+                İkisi de
+              </label>
             </div>
           </fieldset>
 
           <div>
             <label htmlFor="guests" className={labelClass} style={{ color: theme.accent }}>
-              {rsvpForm.guestsLabel}
+              Kaç kişi katılacaksınız?
             </label>
             <select
               id="guests"
@@ -125,17 +138,17 @@ export default function RsvpPage() {
               style={{ borderColor: theme.cardBorder, color: theme.text }}
               defaultValue="1"
             >
-              {[1, 2, 3, 4, 5].map((n) => (
-                <option key={n} value={n}>
-                  {n} {rsvpForm.guestsSuffix}
-                </option>
-              ))}
+              <option value="1">1 kişi</option>
+              <option value="2">2 kişi</option>
+              <option value="3">3 kişi</option>
+              <option value="4">4 kişi</option>
+              <option value="5">5 kişi</option>
             </select>
           </div>
 
           <div>
             <label htmlFor="note" className={labelClass} style={{ color: theme.accent }}>
-              {rsvpForm.noteLabel}
+              Notunuz
             </label>
             <textarea
               id="note"
@@ -143,7 +156,7 @@ export default function RsvpPage() {
               rows={4}
               className={inputClass}
               style={{ borderColor: theme.cardBorder, color: theme.text }}
-              placeholder={rsvpForm.notePlaceholder}
+              placeholder="Beslenme tercihiniz, mesajınız veya sorularınız..."
             />
           </div>
 
@@ -152,13 +165,11 @@ export default function RsvpPage() {
             className={`${sans.className} h-12 w-full text-[11px] uppercase tracking-[0.25em] transition-opacity hover:opacity-80`}
             style={{ backgroundColor: theme.text, color: theme.bg }}
           >
-            {meta.submitLabel}
+            Gönder
           </button>
 
-          <p
-            className={`${sans.className} text-center text-xs font-light opacity-60`}
-          >
-            {meta.previewNote}
+          <p className={`${sans.className} text-center text-xs font-light opacity-60`}>
+            Form gönderimi yakında aktif olacak — şimdilik önizleme.
           </p>
         </form>
       </section>

@@ -1,6 +1,13 @@
 import { Monogram } from "@/components/common/decorations/Monogram";
 import { ThemedButton } from "@/components/common/ThemedButton";
-import { couple, engagementEvent, landingCTAs, landingHero, weddingEvent } from "@/data";
+import {
+  events,
+  landingCouple,
+  landingCTAs,
+  landingEngagementEvent,
+  landingHero,
+  landingWeddingEvent,
+} from "@/data";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
 
@@ -49,11 +56,11 @@ export function LandingHero() {
           className={`${serif.className} mb-5 text-5xl font-normal leading-tight tracking-wide sm:text-6xl lg:text-7xl`}
           style={{ color: theme.text }}
         >
-          {couple.firstNames.bride}{" "}
+          {landingCouple.firstNames.bride}{" "}
           <span className="italic" style={{ color: theme.accentLight }}>
             &
           </span>{" "}
-          {couple.firstNames.groom}
+          {landingCouple.firstNames.groom}
         </h1>
 
         <p
@@ -67,9 +74,9 @@ export function LandingHero() {
           className={`${sans.className} mb-10 text-2xl tracking-[0.18em] sm:text-3xl`}
           style={{ color: theme.text }}
         >
-          {engagementEvent.shortDate}{" "}
+          {landingEngagementEvent.shortDate}{" "}
           <span style={{ color: theme.accentLight }}>·</span>{" "}
-          {weddingEvent.shortDate}
+          {landingWeddingEvent.shortDate}
         </p>
 
         <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">

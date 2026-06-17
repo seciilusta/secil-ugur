@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/common/SectionHeading";
 import { SectionSeparator } from "@/components/common/decorations/SectionSeparator";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
-import type { CountdownTarget, ThemeVariant } from "@/types";
+import type { ThemeVariant } from "@/types";
 
 type TimeLeft = {
   days: number;
@@ -15,10 +15,7 @@ type TimeLeft = {
 };
 
 type CountdownSectionProps = {
-  targets: CountdownTarget[];
   variant?: ThemeVariant;
-  eyebrow?: string;
-  title?: string;
   id?: string;
   compact?: boolean;
 };
@@ -96,7 +93,8 @@ function CountdownBlock({
   return (
     <div
       className="flex flex-1 flex-col items-center gap-5 px-3 py-8 sm:gap-6 sm:px-8 sm:py-10"
-      style={{ backgroundColor: theme.bg }}    >
+      style={{ backgroundColor: theme.bg }}
+    >
       <div className="text-center">
         <p
           className={`${sans.className} mb-2 text-[9px] uppercase tracking-[0.25em] sm:text-[10px] sm:tracking-[0.35em]`}
@@ -156,10 +154,7 @@ function CountdownBlock({
 }
 
 export function CountdownSection({
-  targets,
   variant = "landing",
-  eyebrow = "Takviminize Not Edin",
-  title = "Geri Sayım",
   id = "countdown",
   compact = false,
 }: CountdownSectionProps) {
@@ -174,37 +169,88 @@ export function CountdownSection({
           : "px-4 py-10 sm:px-6 sm:py-16 lg:py-24"
       }
     >
-      {!compact && <SectionSeparator variant={variant} />}
-      <SectionHeading
-        eyebrow={eyebrow}
-        title={title}
-        variant={variant}
-        className={compact ? "mb-6 mt-2 sm:mb-8" : "mb-8 mt-6 sm:mb-12 sm:mt-8"}
-      />
+      <SectionSeparator variant={variant} />
+      {variant === "engagement" ? (
+        <SectionHeading
+          eyebrow="Kutlamaya Kalan"
+          title="Geri Sayım"
+          variant={variant}
+          className={compact ? "mb-6 mt-2 sm:mb-8" : "mb-8 mt-6 sm:mb-12 sm:mt-8"}
+        />
+      ) : variant === "wedding" ? (
+        <SectionHeading
+          eyebrow="Tarihi Not Edin"
+          title="Düğüne Kalan"
+          variant={variant}
+          className={compact ? "mb-6 mt-2 sm:mb-8" : "mb-8 mt-6 sm:mb-12 sm:mt-8"}
+        />
+      ) : (
+        <SectionHeading
+          eyebrow="Takviminize Not Edin"
+          title="Geri Sayım"
+          variant={variant}
+          className={compact ? "mb-6 mt-2 sm:mb-8" : "mb-8 mt-6 sm:mb-12 sm:mt-8"}
+        />
+      )}
 
-      <div
-        className={`mx-auto flex max-w-3xl ${
-          targets.length > 1
-            ? "flex-col divide-y sm:flex-row sm:divide-x sm:divide-y-0"
-            : "flex-col"
-        }`}
-        style={{
-          borderColor: theme.cardBorder,
-          borderWidth: 1,
-          borderStyle: "solid",
-          boxShadow: `inset 0 0 0 1px ${theme.border}`,
-        }}
-      >
-        {targets.map((target) => (
+      {variant === "engagement" ? (
+        <div
+          className="mx-auto flex max-w-3xl flex-col"
+          style={{
+            borderColor: theme.cardBorder,
+            borderWidth: 1,
+            borderStyle: "solid",
+            boxShadow: `inset 0 0 0 1px ${theme.border}`,
+          }}
+        >
           <CountdownBlock
-            key={target.label}
-            label={target.label}
-            date={new Date(target.date)}
+            label="Nişan"
+            date={new Date("2026-07-04T15:00:00")}
             variant={variant}
-            shortDate={target.shortDate}
+            shortDate="04.07.2026"
           />
-        ))}
-      </div>
+        </div>
+      ) : variant === "wedding" ? (
+        <div
+          className="mx-auto flex max-w-3xl flex-col"
+          style={{
+            borderColor: theme.cardBorder,
+            borderWidth: 1,
+            borderStyle: "solid",
+            boxShadow: `inset 0 0 0 1px ${theme.border}`,
+          }}
+        >
+          <CountdownBlock
+            label="Düğün"
+            date={new Date("2026-10-04T19:00:00")}
+            variant={variant}
+            shortDate="04.10.2026"
+          />
+        </div>
+      ) : (
+        <div
+          className="mx-auto flex max-w-3xl flex-col divide-y sm:flex-row sm:divide-x sm:divide-y-0"
+          style={{
+            borderColor: theme.cardBorder,
+            borderWidth: 1,
+            borderStyle: "solid",
+            boxShadow: `inset 0 0 0 1px ${theme.border}`,
+          }}
+        >
+          <CountdownBlock
+            label="Nişan"
+            date={new Date("2026-07-04T15:00:00")}
+            variant={variant}
+            shortDate="04.07.2026"
+          />
+          <CountdownBlock
+            label="Düğün"
+            date={new Date("2026-10-04T19:00:00")}
+            variant={variant}
+            shortDate="04.10.2026"
+          />
+        </div>
+      )}
     </section>
   );
 }

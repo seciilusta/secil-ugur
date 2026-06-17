@@ -6,16 +6,16 @@ import { DecorativeDivider } from "@/components/common/decorations/DecorativeDiv
 import { FloralAccent } from "@/components/common/decorations/FloralAccent";
 import { LineArtAccent } from "@/components/common/decorations/LineArtAccent";
 import { Monogram } from "@/components/common/decorations/Monogram";
-import { events } from "@/data";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
-import type { CTA, ThemeVariant } from "@/types";
+import type { CTA, Event, ThemeVariant } from "@/types";
 
 type HeroSectionProps = {
   eyebrow: string;
   title: ReactNode;
   subtitle: string;
   ctas?: CTA[];
+  events?: Event[];
   variant?: ThemeVariant;
   compact?: boolean;
   showDates?: boolean;
@@ -27,6 +27,7 @@ export function HeroSection({
   title,
   subtitle,
   ctas = [],
+  events = [],
   variant = "landing",
   compact = false,
   showDates = false,
@@ -176,7 +177,7 @@ export function HeroSection({
 
         {showTimeline && (
           <div className="mt-10 w-full">
-            <CelebrationTimeline variant={variant} compact={compact} />
+            <CelebrationTimeline variant={variant} events={events} />
           </div>
         )}
 

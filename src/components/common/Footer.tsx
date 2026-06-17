@@ -1,6 +1,5 @@
 import { Monogram } from "@/components/common/decorations/Monogram";
 import { DecorativeDivider } from "@/components/common/decorations/DecorativeDivider";
-import { couple, engagementEvent, weddingEvent } from "@/data";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
 import type { ThemeVariant } from "@/types";
@@ -12,13 +11,6 @@ type FooterProps = {
 export function Footer({ variant = "landing" }: FooterProps) {
   const theme = getTheme(variant);
   const dividerVariant = variant === "engagement" ? "floral" : "ornate";
-
-  const dates =
-    variant === "engagement"
-      ? engagementEvent.shortDate
-      : variant === "wedding"
-        ? weddingEvent.shortDate
-        : `${engagementEvent.shortDate} · ${weddingEvent.shortDate}`;
 
   return (
     <footer
@@ -41,13 +33,13 @@ export function Footer({ variant = "landing" }: FooterProps) {
         className={`${serif.className} mb-2 text-xl font-normal tracking-wide sm:text-3xl`}
         style={{ color: theme.text }}
       >
-        {couple.name}
+        Seçil & Uğur
       </p>
       <p
         className={`${sans.className} text-[9px] uppercase tracking-[0.22em] sm:text-[10px] sm:tracking-[0.35em]`}
         style={{ color: theme.accent }}
       >
-        {dates}
+        {variant === "engagement" ? "04.07.2026" : "04.10.2026"}
       </p>
     </footer>
   );

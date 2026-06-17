@@ -3,55 +3,29 @@ import { CountdownSection } from "@/components/common/CountdownSection";
 import { BotanicalSideRails } from "@/components/engagement/decorations/BotanicalSideRails";
 import { EngagementHero } from "@/components/engagement/EngagementHero";
 import { EngagementEventDetailsSection } from "@/components/engagement/EngagementEventDetailsSection";
-import { Footer } from "@/components/common/Footer";
-import { Navbar } from "@/components/common/Navbar";
 import { InvitationMessage } from "@/components/common/InvitationMessage";
-import {
-  engagementEvent,
-  engagementInvitationMessage,
-  pageMeta,
-} from "@/data";
 import { getTheme } from "@/lib/theme";
 
 export const metadata: Metadata = {
-  title: pageMeta.engagement.title,
-  description: pageMeta.engagement.description,
+  title: "Nişan — Seçil & Uğur",
+  description: "Seçil ve Uğur'un nişan kutlamasına davetlisiniz.",
 };
 
 export default function EngagementPage() {
   const theme = getTheme("engagement");
-  const meta = pageMeta.engagement;
 
   return (
-    //className="texture-engagement relative isolate min-h-screen overflow-x-hidden"
-
     <div
       className="texture-engagement relative min-h-screen overflow-x-hidden"
       style={{ backgroundColor: theme.bg, color: theme.text }}
     >
       <BotanicalSideRails />
 
-      <div className="relative z-10 mx-auto max-w-[1180px] px-[12vw] sm:px-[11vw] md:px-[120px] lg:px-[200px] xl:px-[260px]">
-
+      <div className="relative z-10 mx-auto w-full max-w-4xl px-6 sm:px-8 lg:px-10">
         <EngagementHero />
-
-        <InvitationMessage message={engagementInvitationMessage} variant="engagement" />
-
-        <CountdownSection
-          targets={[
-            {
-              label: engagementEvent.label,
-              date: engagementEvent.date,
-              shortDate: engagementEvent.shortDate,
-            },
-          ]}
-          variant="engagement"
-          eyebrow={meta.countdownEyebrow}
-          title="Geri Sayım"
-          compact
-        />
-
-        <EngagementEventDetailsSection event={engagementEvent} />
+        <InvitationMessage variant="engagement" />
+        <CountdownSection variant="engagement" compact />
+        <EngagementEventDetailsSection />
       </div>
     </div>
   );

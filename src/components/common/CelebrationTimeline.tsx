@@ -1,18 +1,19 @@
 import Link from "next/link";
 import { DecorativeDivider } from "@/components/common/decorations/DecorativeDivider";
-import { events } from "@/data";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
-import type { ThemeVariant } from "@/types";
+import type { Event, ThemeVariant } from "@/types";
 
 type CelebrationTimelineProps = {
   variant?: ThemeVariant;
   compact?: boolean;
+  events: Event[];
 };
 
 export function CelebrationTimeline({
   variant = "landing",
   compact = false,
+  events,
 }: CelebrationTimelineProps) {
   const theme = getTheme(variant);
   const dividerVariant = variant === "engagement" ? "floral" : "ornate";

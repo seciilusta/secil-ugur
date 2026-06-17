@@ -10,21 +10,15 @@ import { WeddingHero } from "@/components/wedding/WeddingHero";
 import { WeddingScheduleSection } from "@/components/wedding/WeddingScheduleSection";
 import { WeddingStorySection } from "@/components/wedding/WeddingStorySection";
 import { InvitationMessage } from "@/components/common/InvitationMessage";
-import {
-  pageMeta,
-  weddingEvent,
-  weddingInvitationMessage,
-} from "@/data";
 import { getTheme } from "@/lib/theme";
 
 export const metadata: Metadata = {
-  title: pageMeta.wedding.title,
-  description: pageMeta.wedding.description,
+  title: "Düğün — Seçil & Uğur",
+  description: "Seçil ve Uğur'un düğün kutlamasına davetlisiniz.",
 };
 
 export default function WeddingPage() {
   const theme = getTheme("wedding");
-  const meta = pageMeta.wedding;
 
   return (
     <div
@@ -32,37 +26,15 @@ export default function WeddingPage() {
       style={{ backgroundColor: theme.bg, color: theme.text }}
     >
       <Navbar variant="wedding" />
-
       <WeddingHero />
-
-      <InvitationMessage message={weddingInvitationMessage} variant="wedding" />
-
+      <InvitationMessage variant="wedding" />
       <WeddingStorySection />
-
-      <CountdownSection
-        targets={[
-          {
-            label: weddingEvent.label,
-            date: weddingEvent.date,
-            shortDate: weddingEvent.shortDate,
-          },
-        ]}
-        variant="wedding"
-        eyebrow={meta.countdownEyebrow}
-        title={meta.countdownTitle}
-        compact
-      />
-
-      <EventDetails event={weddingEvent} variant="wedding" />
-
+      <CountdownSection variant="wedding" compact />
+      <EventDetails variant="wedding" />
       <WeddingScheduleSection />
-
       <WeddingGallerySection />
-
       <RsvpCtaSection variant="wedding" />
-
       <WeddingContactSection />
-
       <Footer variant="wedding" />
     </div>
   );

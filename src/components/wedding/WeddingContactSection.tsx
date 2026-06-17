@@ -1,6 +1,5 @@
 import { InvitationFrame } from "@/components/common/decorations/InvitationFrame";
 import { SectionHeading } from "@/components/common/SectionHeading";
-import { weddingContact } from "@/data";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
 
@@ -11,8 +10,8 @@ export function WeddingContactSection() {
     <section id="iletisim" style={{ backgroundColor: theme.bgAccent }}>
       <div className="mx-auto max-w-2xl px-6 py-12 lg:py-14">
         <SectionHeading
-          eyebrow={weddingContact.eyebrow}
-          title={weddingContact.title}
+          eyebrow="İletişim"
+          title="Sorularınız mı var?"
           variant="wedding"
           className="mb-8"
         />
@@ -26,13 +25,13 @@ export function WeddingContactSection() {
             className={`${serif.className} mb-4 text-lg leading-relaxed sm:text-xl`}
             style={{ color: theme.text }}
           >
-            {weddingContact.note}
+            Davet, ulaşım veya konaklama hakkında sorularınız için bize yazabilirsiniz.
           </p>
           <p
             className={`${sans.className} text-sm tracking-wide`}
             style={{ color: theme.accent }}
           >
-            {weddingContact.email}
+            iletisim@secilugur.com
           </p>
         </InvitationFrame>
       </div>

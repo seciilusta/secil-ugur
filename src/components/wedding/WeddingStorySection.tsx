@@ -1,6 +1,5 @@
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { WeddingBotanicalAccent } from "@/components/wedding/decorations/WeddingBotanicalAccent";
-import { weddingStory } from "@/data";
 import { serif } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
 
@@ -19,13 +18,13 @@ export function WeddingStorySection() {
             className={`${serif.className} relative z-10 max-w-xs text-center text-3xl font-normal italic leading-snug sm:text-4xl`}
             style={{ color: theme.text }}
           >
-            {weddingStory.tagline}
+            Birlikte yazdığımız yolculuk
           </p>
         </div>
         <div className="flex flex-col justify-center px-6 py-12 sm:px-10 lg:px-14 lg:py-14">
           <SectionHeading
-            eyebrow={weddingStory.eyebrow}
-            title={weddingStory.title}
+            eyebrow="Hikayemiz"
+            title="Madrid'den İstanbul'a"
             variant="wedding"
             align="left"
             className="mb-6"
@@ -34,7 +33,8 @@ export function WeddingStorySection() {
             className={`${serif.className} text-lg leading-relaxed sm:text-xl`}
             style={{ color: theme.text, opacity: 0.9 }}
           >
-            {weddingStory.body}
+            Madrid&apos;de başlayan hikâyemizi, İstanbul&apos;un zamansız zarafetiyle taçlandırıyoruz.
+            Aden Boğazköy Tesisleri&apos;nde, bu yolculuğun en güzel sayfasını birlikte yazıyoruz.
           </p>
         </div>
       </div>

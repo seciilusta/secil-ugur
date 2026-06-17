@@ -1,6 +1,5 @@
 import { Monogram } from "@/components/common/decorations/Monogram";
 import { ThemedButton } from "@/components/common/ThemedButton";
-import { rsvpCta } from "@/data";
 import { serif, sans } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
 import type { ThemeVariant } from "@/types";
@@ -49,18 +48,18 @@ export function RsvpCtaSection({ variant = "landing" }: RsvpCtaSectionProps) {
               className={`${sans.className} mb-2 text-[10px] uppercase tracking-[0.35em]`}
               style={{ color: isLanding ? theme.gold : theme.accent }}
             >
-              {rsvpCta.eyebrow}
+              Katılımınızı Bekliyoruz
             </p>
             <p
               className={`${serif.className} text-2xl font-normal sm:text-3xl`}
               style={{ color: isLanding ? theme.bg : theme.text }}
             >
-              {rsvpCta.title}
+              LCV formunu doldurun
             </p>
           </div>
         </div>
-        <ThemedButton href={rsvpCta.href} variant={variant} rounded>
-          {rsvpCta.buttonLabel}
+        <ThemedButton href="/rsvp" variant={variant} rounded>
+          LCV Gönder
         </ThemedButton>
       </div>
     </section>
