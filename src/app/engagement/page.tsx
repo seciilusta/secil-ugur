@@ -26,7 +26,7 @@ export default function EngagementPage() {
     //className="texture-engagement relative isolate min-h-screen overflow-x-hidden"
 
     <div
-      className="texture-engagement relative min-h-screen overflow-x-clip"
+      className="texture-engagement relative min-h-screen overflow-x-hidden"
       style={{ backgroundColor: theme.bg, color: theme.text }}
     >
       <BotanicalSideRails />
@@ -47,6 +47,7 @@ export default function EngagementPage() {
           ]}
           variant="engagement"
           eyebrow={meta.countdownEyebrow}
+          title="Geri Sayım"
           compact
         />
 

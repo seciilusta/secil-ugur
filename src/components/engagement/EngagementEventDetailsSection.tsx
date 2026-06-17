@@ -76,7 +76,7 @@ function ExternalButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`${sans.className} inline-flex h-11 min-w-[168px] items-center justify-center rounded-full px-8 text-[10px] uppercase tracking-[0.24em] transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 sm:h-12 sm:text-[11px] sm:tracking-[0.28em]`}
+      className={`${sans.className} pointer-events-auto inline-flex h-11 min-w-[168px] items-center justify-center rounded-full px-8 text-[10px] uppercase tracking-[0.24em] transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 sm:h-12 sm:text-[11px] sm:tracking-[0.28em]`}
       style={
         variant === "light"
           ? {
@@ -106,13 +106,13 @@ export function EngagementEventDetailsSection({
 
   return (
     <section
-      className="py-8 sm:py-10 lg:py-12"
+      className="pt-8 pb-12 sm:pt-10 sm:pb-14 lg:pt-12 lg:pb-16"
       style={{ backgroundColor: theme.bg }}
     >
       <SectionSeparator variant="engagement" />
 
       <div
-        className="mx-auto mt-6 grid max-w-5xl overflow-hidden sm:mt-8 lg:grid-cols-2"
+        className="mx-auto mt-6 grid max-w-5xl items-stretch overflow-hidden sm:mt-8 lg:grid-cols-2"
         style={{
           border: `1px solid ${theme.cardBorder}`,
           boxShadow: `0 24px 80px ${theme.accent}18`,
@@ -234,22 +234,27 @@ export function EngagementEventDetailsSection({
 
         {/* Location + map */}
         <div
-          className="relative min-h-[320px] sm:min-h-[380px] lg:min-h-full"
+          className="relative isolate min-h-[420px] overflow-hidden sm:min-h-[460px] lg:min-h-full lg:self-stretch"
           style={{ backgroundColor: theme.bgAccent }}
         >
           {event.mapsEmbedUrl && (
-            <iframe
-              src={event.mapsEmbedUrl}
-              title={`${event.venue} haritası`}
-              className="absolute inset-0 h-full w-full border-0"
-              loading="lazy"
-              style={{ pointerEvents: "none" }}
+            <div
+              className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
               aria-hidden
-            />
+            >
+              <iframe
+                src={event.mapsEmbedUrl}
+                title={`${event.venue} haritası`}
+                className="pointer-events-none absolute inset-0 h-full w-full border-0"
+                loading="lazy"
+                tabIndex={-1}
+                aria-hidden
+              />
+            </div>
           )}
 
           <div
-            className="absolute inset-0"
+            className="pointer-events-none absolute inset-0 z-[1]"
             style={{
               background:
                 "linear-gradient(180deg, rgba(63,53,43,0.16) 0%, rgba(63,53,43,0.58) 100%)",
@@ -257,7 +262,7 @@ export function EngagementEventDetailsSection({
             aria-hidden
           />
 
-          <div className="relative flex h-full min-h-[320px] flex-col items-center justify-center px-6 py-10 text-center sm:min-h-[380px] sm:px-10 sm:py-12">
+          <div className="relative z-[2] flex h-full min-h-[420px] flex-col items-center justify-center px-6 py-12 text-center sm:min-h-[460px] sm:px-10 sm:py-14 lg:min-h-full">
             <p
               className={`${sans.className} mb-4 max-w-xs text-base font-semibold uppercase tracking-[0.14em] sm:text-lg`}
               style={{ color: "#FFFFFF" }}
