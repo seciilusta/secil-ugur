@@ -17,7 +17,7 @@ export function EngagementHero() {
           className={`${sans.className} mb-4 text-xs font-medium uppercase tracking-[0.28em] sm:mb-5 sm:text-sm sm:tracking-[0.34em]`}
           style={{ color: theme.accent }}
         >
-          Nişan
+          Nişanımıza Davetlisiniz
         </p>
         <h1
           className={`${serif.className} mb-5 text-[40px] font-normal leading-[1.05] tracking-wide sm:mb-6 sm:text-[60px] lg:text-[72px]`}

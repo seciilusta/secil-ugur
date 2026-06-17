@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { CountdownSection } from "@/components/common/CountdownSection";
 import { BotanicalSideRails } from "@/components/engagement/decorations/BotanicalSideRails";
 import { EngagementHero } from "@/components/engagement/EngagementHero";
@@ -6,10 +5,6 @@ import { EngagementEventDetailsSection } from "@/components/engagement/Engagemen
 import { InvitationMessage } from "@/components/common/InvitationMessage";
 import { getTheme } from "@/lib/theme";
 
-export const metadata: Metadata = {
-  title: "Nişan — Seçil & Uğur",
-  description: "Seçil ve Uğur'un nişan kutlamasına davetlisiniz.",
-};
 
 export default function EngagementPage() {
   const theme = getTheme("engagement");
@@ -23,7 +18,7 @@ export default function EngagementPage() {
 
       <div className="relative z-10 mx-auto w-full max-w-4xl px-6 sm:px-8 lg:px-10">
         <EngagementHero />
-        <InvitationMessage variant="engagement" />
+        {/* <InvitationMessage variant="engagement" /> */}
         <EngagementEventDetailsSection />
         <CountdownSection variant="engagement" compact />
 
