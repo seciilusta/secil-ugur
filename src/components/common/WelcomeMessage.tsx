@@ -24,24 +24,10 @@ export function WelcomeMessage({
           boxShadow: `inset 0 0 0 1px ${theme.accent}44, inset 0 0 0 6px transparent, inset 0 0 0 7px ${theme.gold}28`,
         }}
       >
-        <DecorativeDivider
-          color={theme.text}
-          accentColor={theme.accent}
-          variant={dividerVariant}
-          className="mb-6 sm:mb-8"
-        />
-        <p
-          className={`${serif.className} text-base font-normal leading-relaxed tracking-wide sm:text-xl sm:leading-relaxed`}
-          style={{ color: theme.text }}
-        >
+        <p className={`${serif.className} text-base font-normal leading-relaxed tracking-wide sm:text-xl sm:leading-relaxed`}
+          style={{ color: theme.text }}>
           {message}
         </p>
-        <DecorativeDivider
-          color={theme.text}
-          accentColor={theme.accent}
-          variant={dividerVariant}
-          className="mt-6 sm:mt-8"
-        />
       </div>
     </section>
   );

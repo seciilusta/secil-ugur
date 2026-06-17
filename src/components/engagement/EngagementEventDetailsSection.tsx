@@ -1,9 +1,6 @@
 import type { ReactNode } from "react";
 import { SectionSeparator } from "@/components/common/decorations/SectionSeparator";
-import {
-  engagementEvent,
-  engagementHostFamilies,
-} from "@/data";
+import { engagementEvent, engagementHostFamilies } from "@/data";
 import { buildGoogleCalendarUrl } from "@/lib/calendar";
 import { sans, serif } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
@@ -13,15 +10,34 @@ type EngagementEventDetailsSectionProps = {
   event?: Event;
 };
 
+function getIstanbulDate(isoDate: string) {
+  const hasTime = isoDate.includes("T");
+  const hasTimezone = /Z$|[+-]\d{2}:\d{2}$/.test(isoDate);
+
+  const dateString = hasTime
+    ? hasTimezone
+      ? isoDate
+      : `${isoDate}+03:00`
+    : `${isoDate}T00:00:00+03:00`;
+
+  return new Date(dateString);
+}
+
 function formatDateParts(isoDate: string) {
-  const date = new Date(`${isoDate}+03:00`);
+  const date = getIstanbulDate(isoDate);
+
   const day = date.toLocaleDateString("tr-TR", {
     day: "2-digit",
     timeZone: "Europe/Istanbul",
   });
+
   const month = date
-    .toLocaleDateString("tr-TR", { month: "long", timeZone: "Europe/Istanbul" })
+    .toLocaleDateString("tr-TR", {
+      month: "long",
+      timeZone: "Europe/Istanbul",
+    })
     .toLocaleUpperCase("tr-TR");
+
   const year = date.toLocaleDateString("tr-TR", {
     year: "numeric",
     timeZone: "Europe/Istanbul",
@@ -34,7 +50,12 @@ function ClockIcon({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden>
       <circle cx="12" cy="12" r="9" stroke={color} strokeWidth="1.2" />
-      <path d="M12 7v5l3 2" stroke={color} strokeWidth="1.2" strokeLinecap="round" />
+      <path
+        d="M12 7v5l3 2"
+        stroke={color}
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
@@ -55,16 +76,18 @@ function ExternalButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`${sans.className} inline-flex h-11 min-w-[168px] items-center justify-center rounded-full px-8 text-[10px] uppercase tracking-[0.24em] transition-colors duration-200 sm:h-12 sm:text-[11px] sm:tracking-[0.28em]`}
+      className={`${sans.className} inline-flex h-11 min-w-[168px] items-center justify-center rounded-full px-8 text-[10px] uppercase tracking-[0.24em] transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 sm:h-12 sm:text-[11px] sm:tracking-[0.28em]`}
       style={
         variant === "light"
           ? {
-              backgroundColor: "rgba(255,255,255,0.92)",
-              color: theme.text,
+              backgroundColor: "rgba(255,255,255,0.94)",
+              color: theme.accent,
+              boxShadow: "0 16px 40px rgba(63,53,43,0.18)",
             }
           : {
               backgroundColor: theme.buttonBg,
               color: theme.buttonText,
+              boxShadow: `0 16px 40px ${theme.accent}24`,
             }
       }
     >
@@ -82,12 +105,18 @@ export function EngagementEventDetailsSection({
   const address = event.address ?? `${event.venue}, ${event.location}`;
 
   return (
-    <section className="py-8 sm:py-10 lg:py-12">
+    <section
+      className="py-8 sm:py-10 lg:py-12"
+      style={{ backgroundColor: theme.bg }}
+    >
       <SectionSeparator variant="engagement" />
 
       <div
         className="mx-auto mt-6 grid max-w-5xl overflow-hidden sm:mt-8 lg:grid-cols-2"
-        style={{ border: `1px solid ${theme.cardBorder}` }}
+        style={{
+          border: `1px solid ${theme.cardBorder}`,
+          boxShadow: `0 24px 80px ${theme.accent}18`,
+        }}
       >
         {/* Event details */}
         <div
@@ -101,15 +130,12 @@ export function EngagementEventDetailsSection({
             Etkinlik Detayları
           </p>
 
-          <div
-            className="mb-6 flex items-center justify-center"
-            style={{ color: theme.accent }}
-          >
+          <div className="mb-6 flex items-center justify-center">
             <span
               className="h-px w-16 sm:w-20"
               style={{ backgroundColor: theme.border }}
             />
-            <span className="mx-4">
+            <span className="mx-4" style={{ color: theme.accent }}>
               <ClockIcon color={theme.accent} />
             </span>
             <span
@@ -122,12 +148,14 @@ export function EngagementEventDetailsSection({
             className={`${sans.className} mb-2 text-xl tracking-[0.04em] sm:text-2xl`}
             style={{ color: theme.text }}
           >
-            <span>{day}</span> <span>{month}</span> <span>{year}</span>
+            <span>{day}</span>{" "}
+            <span style={{ color: theme.accent }}>{month}</span>{" "}
+            <span>{year}</span>
           </p>
 
           <p
             className={`${sans.className} mb-8 text-sm sm:text-[15px]`}
-            style={{ color: theme.text }}
+            style={{ color: theme.accent }}
           >
             {event.weekday.toLocaleUpperCase("tr-TR")} | {event.time}
           </p>
@@ -149,6 +177,7 @@ export function EngagementEventDetailsSection({
                   />
                 </svg>
               </span>
+
               <p
                 className={`${sans.className} text-[13px] uppercase tracking-[0.12em] sm:text-[15px]`}
                 style={{ color: theme.text }}
@@ -180,6 +209,7 @@ export function EngagementEventDetailsSection({
                   />
                 </svg>
               </span>
+
               <p
                 className={`${sans.className} text-[13px] uppercase tracking-[0.12em] sm:text-[15px]`}
                 style={{ color: theme.text }}
@@ -194,7 +224,8 @@ export function EngagementEventDetailsSection({
               className={`${sans.className} mb-8 max-w-sm text-[13px] leading-relaxed sm:text-[15px]`}
               style={{ color: theme.muted }}
             >
-              <strong style={{ color: theme.text }}>Kıyafet:</strong> {event.dressCode}
+              <strong style={{ color: theme.text }}>Kıyafet:</strong>{" "}
+              {event.dressCode}
             </p>
           )}
 
@@ -202,7 +233,10 @@ export function EngagementEventDetailsSection({
         </div>
 
         {/* Location + map */}
-        <div className="relative min-h-[320px] sm:min-h-[380px] lg:min-h-full">
+        <div
+          className="relative min-h-[320px] sm:min-h-[380px] lg:min-h-full"
+          style={{ backgroundColor: theme.bgAccent }}
+        >
           {event.mapsEmbedUrl && (
             <iframe
               src={event.mapsEmbedUrl}
@@ -218,7 +252,7 @@ export function EngagementEventDetailsSection({
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(47,41,37,0.18) 0%, rgba(47,41,37,0.55) 100%)",
+                "linear-gradient(180deg, rgba(63,53,43,0.16) 0%, rgba(63,53,43,0.58) 100%)",
             }}
             aria-hidden
           />
@@ -246,13 +280,6 @@ export function EngagementEventDetailsSection({
           </div>
         </div>
       </div>
-
-      <p
-        className={`${serif.className} mx-auto mt-8 max-w-2xl text-center text-base font-normal leading-relaxed sm:mt-10 sm:text-xl`}
-        style={{ color: theme.text }}
-      >
-        {event.description}
-      </p>
     </section>
   );
 }

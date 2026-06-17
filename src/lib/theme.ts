@@ -38,39 +38,46 @@ const landing = {
   buttonSecondaryBorder: landingEspresso,
 };
 
-// --- Engagement: soft sage ---
-const engagementSage = "#96A084";
-const engagementSageDark = "#7F8A6C";
-const engagementSageLight = "#C5CCBA";
-const engagementGold = "#CDBA96";
-const engagementInk = "#5A544D";
-const engagementMuted = "#9E988F";
-const engagementLine = "#DDD6CB";
-const engagementDecorative = "#D8D1C5";
-const engagementWhite = "#FFFFFF";
+// --- Engagement: ivory, eucalyptus & soft gold
+const engagementIvory = "#F8F5F1";
+const engagementWarmBeige = "#EFE8E0";
+const engagementPaper = "#FFFDF9";
+
+const engagementEspresso = "#3F352B";
+const engagementTaupeText = "#7C6C5D";
+const engagementSoftGold = "#C9B28E";
+const engagementEucalyptus = "#A8B2A1";
+const engagementEucalyptusDark = "#6F7B68";
+const engagementEucalyptusMuted = "#87927F";
+
+const engagementBorder = "#DED4C9";
 
 const engagement = {
   // Surfaces
-  bg: "#FBFAF7",
-  bgAccent: "#F2EEE7",
-  bgLayer: engagementWhite,
-  cardBg: engagementWhite,
+  bg: engagementIvory,
+  bgAccent: engagementWarmBeige,
+  bgLayer: engagementPaper,
+  cardBg: engagementPaper,
+
   // Text
-  text: engagementInk,
-  muted: engagementMuted,
+  text: engagementEspresso,
+  muted: engagementTaupeText,
+
   // Accents
-  accent: engagementSage,
-  accentLight: engagementSageLight,
-  gold: engagementGold,
-  decorative: engagementDecorative,
+  accent: engagementEucalyptusDark,
+  accentLight: engagementSoftGold,
+  gold: engagementSoftGold,
+  decorative: engagementEucalyptus,
+
   // Lines
-  border: engagementLine,
-  cardBorder: engagementLine,
+  border: engagementBorder,
+  cardBorder: engagementBorder,
+
   // Buttons
-  buttonBg: engagementSage,
-  buttonText: engagementWhite,
-  buttonHover: engagementSageDark,
-  buttonSecondaryBorder: engagementMuted,
+  buttonBg: engagementEucalyptusDark,
+  buttonText: engagementPaper,
+  buttonHover: engagementEucalyptusMuted,
+  buttonSecondaryBorder: engagementEucalyptusDark,
 };
 
 // --- Wedding: warm stone & gold ---

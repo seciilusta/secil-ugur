@@ -47,7 +47,6 @@ export default function EngagementPage() {
           ]}
           variant="engagement"
           eyebrow={meta.countdownEyebrow}
-          title="Geri Sayım"
           compact
         />
 

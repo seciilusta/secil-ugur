@@ -5,6 +5,6 @@ export const engagementWelcomeMessage =
   "Nişanımızı sevdiklerimizle, sade ve içten bir akşamda kutlamak istiyoruz. Bu özel günde yanımızda olmanız bizi çok mutlu eder.";
 
 export const engagementHostFamilies = {
-  bride: "Seçil'in Ailesi",
-  groom: "Uğur'un Ailesi",
+  bride: "Usta Ailesi",
+  groom: "Şenol Ailesi",
 };

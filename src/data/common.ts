@@ -35,7 +35,6 @@ export const engagementEvent: Event = {
     "Ailemiz ve yakın dostlarımızla birlikte, sıcak ve samimi bir akşam geçireceğiz. Sizi de aramızda görmek isteriz.",
   cardSummary:
     "Ailemiz ve yakın dostlarımızla birlikte, sıcak ve samimi bir akşam geçireceğiz.",
-  dressCode: "Şık ve rahat — detaylar yakında",
   href: "/engagement",
   ctaLabel: "Nişan Detayları",
   step: "I",

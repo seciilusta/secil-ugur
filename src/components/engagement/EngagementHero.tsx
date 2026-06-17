@@ -13,21 +13,16 @@ export function EngagementHero() {
 
   return (
     <section className="relative overflow-hidden">
-      {/* Layered background gradient — vignette fades to transparent at edges */}
       <div
-        className={`absolute inset-0 ${heroBackgroundMask}`}
-        style={{
-          background: `linear-gradient(165deg, ${theme.bg} 0%, ${theme.bgAccent} 45%, ${theme.bgLayer} 100%)`,
-        }}
         aria-hidden
       />
       <div
-        className={`texture-engagement absolute inset-0 ${heroBackgroundMask}`}
+        className={`texture-engagement absolute inset-0`}
         aria-hidden
       />
 
       <div className="relative mx-auto flex max-w-3xl flex-col items-center px-4 py-12 text-center sm:px-6 sm:py-16 lg:py-20">
-        <Monogram color={theme.text} accentColor={theme.accent} size="lg" className="mb-5 sm:mb-7" />
+        <Monogram size="lg" className="mb-5 sm:mb-7" />
 
         <p
           className={`${sans.className} mb-3 text-[9px] uppercase tracking-[0.35em] sm:mb-4 sm:text-[10px] sm:tracking-[0.42em]`}
@@ -37,7 +32,7 @@ export function EngagementHero() {
         </p>
 
         <h1
-          className={`${serif.className} mb-4 text-5xl font-normal leading-[1.05] tracking-wide sm:mb-5 sm:text-6xl lg:text-7xl`}
+          className={`${serif.className} mb-4 text-4xl font-normal leading-[1.05] tracking-wide sm:mb-5 sm:text-6xl lg:text-7xl`}
           style={{ color: theme.text }}
         >
           {couple.firstNames.bride}{" "}
