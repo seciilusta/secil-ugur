@@ -3,15 +3,15 @@ import { serif } from "@/lib/fonts";
 import { getTheme } from "@/lib/theme";
 import type { ThemeVariant } from "@/types";
 
-type WelcomeMessageProps = {
+type InvitationMessageProps = {
   message: string;
   variant?: ThemeVariant;
 };
 
-export function WelcomeMessage({
+export function InvitationMessage({
   message,
   variant = "landing",
-}: WelcomeMessageProps) {
+}: InvitationMessageProps) {
   const theme = getTheme(variant);
   const dividerVariant = variant === "engagement" ? "floral" : "ornate";
 

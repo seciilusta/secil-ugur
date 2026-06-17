@@ -4,7 +4,7 @@ import { couple } from "@/data/common";
 export const ourStory =
   "Madrid'de başlayan hikâyemizi, ailemiz ve sevdiklerimizle İstanbul'da kutlamaya hazırlanıyoruz.";
 
-export const welcomeMessage =
+export const invitationMessage =
   "Hayatımızın en güzel günlerini sizinle kutlamak istiyoruz. Nişanımızda ve düğünümüzde yanımızda olursanız çok mutlu oluruz. Detayları tarihe yaklaştıkça buradan paylaşmaya devam edeceğiz.";
 
 export const landingHero = {

@@ -1,6 +1,6 @@
 import type { CTA, FaqItem } from "@/types";
 
-export const weddingWelcomeMessage =
+export const weddingInvitationMessage =
   "Düğünümüzü birlikte kutlamak, bizim için en güzel hediye. Sizi aramızda görmekten büyük mutluluk duyarız.";
 
 export const weddingStory = {

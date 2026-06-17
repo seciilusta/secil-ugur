@@ -9,11 +9,11 @@ import { WeddingGallerySection } from "@/components/wedding/WeddingGallerySectio
 import { WeddingHero } from "@/components/wedding/WeddingHero";
 import { WeddingScheduleSection } from "@/components/wedding/WeddingScheduleSection";
 import { WeddingStorySection } from "@/components/wedding/WeddingStorySection";
-import { WelcomeMessage } from "@/components/common/WelcomeMessage";
+import { InvitationMessage } from "@/components/common/InvitationMessage";
 import {
   pageMeta,
   weddingEvent,
-  weddingWelcomeMessage,
+  weddingInvitationMessage,
 } from "@/data";
 import { getTheme } from "@/lib/theme";
 
@@ -35,7 +35,7 @@ export default function WeddingPage() {
 
       <WeddingHero />
 
-      <WelcomeMessage message={weddingWelcomeMessage} variant="wedding" />
+      <InvitationMessage message={weddingInvitationMessage} variant="wedding" />
 
       <WeddingStorySection />
 

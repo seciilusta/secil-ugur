@@ -5,10 +5,10 @@ import { EngagementHero } from "@/components/engagement/EngagementHero";
 import { EngagementEventDetailsSection } from "@/components/engagement/EngagementEventDetailsSection";
 import { Footer } from "@/components/common/Footer";
 import { Navbar } from "@/components/common/Navbar";
-import { WelcomeMessage } from "@/components/common/WelcomeMessage";
+import { InvitationMessage } from "@/components/common/InvitationMessage";
 import {
   engagementEvent,
-  engagementWelcomeMessage,
+  engagementInvitationMessage,
   pageMeta,
 } from "@/data";
 import { getTheme } from "@/lib/theme";
@@ -35,7 +35,7 @@ export default function EngagementPage() {
 
         <EngagementHero />
 
-        <WelcomeMessage message={engagementWelcomeMessage} variant="engagement" />
+        <InvitationMessage message={engagementInvitationMessage} variant="engagement" />
 
         <CountdownSection
           targets={[
