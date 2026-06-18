@@ -94,7 +94,7 @@ export function EngagementEventDetailsSection() {
   const { day, month, year } = formatDateParts("2026-07-04T15:00:00");
 
   return (
-    <section className="pt-8 pb-12 sm:pt-10 sm:pb-14 lg:pt-12 lg:pb-18">
+    <section className="pt-8 pb-0 sm:pt-10 lg:pt-12 ">
       <div className="mx-auto flex max-w-6xl flex-col gap-7 px-5 sm:px-6 lg:gap-9 lg:px-8">
         <div
           className="mx-auto w-full max-w-3xl px-5 py-9 text-center sm:px-10 sm:py-11 lg:px-14 lg:py-12"
